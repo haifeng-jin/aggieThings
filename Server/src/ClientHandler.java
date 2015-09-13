@@ -1,5 +1,5 @@
-import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.Socket;
 
 /*
@@ -20,30 +20,31 @@ public class ClientHandler implements Runnable {
 	 * @see java.lang.Runnable#run()
 	 */
 	public void run() {
-		DataInputStream input;
 		try {
-			input = new DataInputStream(client.getInputStream());
-			int byteNumReceived = 0;
+			ObjectInputStream input = new ObjectInputStream(client.getInputStream());
 
 			// One item at a time.
 			while (true) {
-				byte[] byteArray = new byte[100];
-				byteNumReceived = input.read(byteArray);
+				DataItem dataItem = (DataItem) input.readObject();
 
-				if (byteNumReceived == -1)
+				if (dataItem == null)
+				{
+					input.close();
 					break;
-				
-				insert(byteArray);
+				}
+
+				insert(id, dataItem);
 			}
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	private void insert(byte[] byteArray) {
-		//TODO: do the database insertion here.
+	static private synchronized void insert(int id, DataItem dataItem) {
 		System.out.print("Handler " + id + " received ");
-		System.out.println(byteArray.length + "bytes.");
+		System.out.println(dataItem.getData().length + "bytes.");
 	}
 }

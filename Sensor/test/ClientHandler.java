@@ -1,7 +1,8 @@
 
 import static org.junit.Assert.*;
-import java.io.DataInputStream;
+
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.Socket;
 
 /*
@@ -22,27 +23,31 @@ public class ClientHandler implements Runnable {
 	 * @see java.lang.Runnable#run()
 	 */
 	public void run() {
-		DataInputStream input;
 		try {
-			input = new DataInputStream(client.getInputStream());
+			ObjectInputStream input = new ObjectInputStream(client.getInputStream());
 			int itemReceived = 0;
 			int byteNumReceived = 0;
 
 			//One item at a time.
 			while (true) {
-				byte[] byteArray = new byte[100];
-				byteNumReceived = input.read(byteArray);
+				DataItem dataItem = (DataItem) input.readObject();
 
-				if (byteNumReceived == -1)
+				if (dataItem == null)
+				{
+					input.close();
 					break;
+				}
 
 				itemReceived++;
+				byteNumReceived = dataItem.getData().length;
 				//Check the size of the current item.
 				assertEquals(config.byteNum, byteNumReceived);
 			}
 			//Check the total number of item received.
 			assertEquals(config.itemNum, itemReceived);
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 

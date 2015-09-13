@@ -1,6 +1,6 @@
 
 import java.io.IOException;
-import java.io.PrintStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 /*
@@ -31,17 +31,16 @@ public class Sensor implements Runnable{
 	 */
 	public void run() {
 		try {
-			Socket socketClient;
-			PrintStream outputStream;
-			socketClient = new Socket(serverAddress, PortInfo.getPort());
-			outputStream = new PrintStream(socketClient.getOutputStream());
+			Socket socketClient = new Socket(serverAddress, PortInfo.getPort());
+			ObjectOutputStream outputStream = new ObjectOutputStream(socketClient.getOutputStream());
 
 			//One item at a time.
 			for (int i = 0; i < config.itemNum; i++) {
-				byte[] byteArray = new byte[config.byteNum];
-				outputStream.write(byteArray, 0, config.byteNum);
+				outputStream.writeObject(new DataItem(new byte[config.byteNum]));
 				Thread.sleep(config.intermissionLength);
 			}
+			//null indicating the end of this Sensor's data
+			outputStream.writeObject(null);
 
 			outputStream.close();
 			socketClient.close();
