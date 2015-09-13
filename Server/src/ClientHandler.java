@@ -45,6 +45,6 @@ public class ClientHandler implements Runnable {
 
 	static private synchronized void insert(int id, DataItem dataItem) {
 		System.out.print("Handler " + id + " received ");
-		System.out.println(dataItem.getData().length + "bytes.");
+		System.out.println(dataItem.getData().length + " bytes at " + dataItem.getTimestamp() + ".");
 	}
 }
