@@ -1,0 +1,5 @@
+80 500 10 15
+// Number of bytes in each item.
+// The length of the intermission between items transference in milliseconds.
+// The total number of items need to be send.
+// The total number of sensors.

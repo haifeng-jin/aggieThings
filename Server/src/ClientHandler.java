@@ -1,22 +1,19 @@
-
-import static org.junit.Assert.*;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
 /*
- * It simulates a server to handle all the data from one sensor for testing.
+ * It handles all the data from one sensor.
  * It runs as a separate thread.
  */
 public class ClientHandler implements Runnable {
 
-	SensorConfig config;
 	Socket client;
+	int id;
 
-	public ClientHandler(SensorConfig config, Socket client) {
-		this.config = config;
+	public ClientHandler(Socket client, int id) {
 		this.client = client;
+		this.id = id;
 	}
 
 	/*
@@ -25,10 +22,8 @@ public class ClientHandler implements Runnable {
 	public void run() {
 		try {
 			ObjectInputStream input = new ObjectInputStream(client.getInputStream());
-			int itemReceived = 0;
-			int byteNumReceived = 0;
 
-			//One item at a time.
+			// One item at a time.
 			while (true) {
 				DataItem dataItem = (DataItem) input.readObject();
 
@@ -38,18 +33,18 @@ public class ClientHandler implements Runnable {
 					break;
 				}
 
-				itemReceived++;
-				byteNumReceived = dataItem.getData().length;
-				//Check the size of the current item.
-				assertEquals(config.byteNum, byteNumReceived);
+				insert(id, dataItem);
 			}
-			//Check the total number of item received.
-			assertEquals(config.itemNum, itemReceived);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
+	}
+
+	static private synchronized void insert(int id, DataItem dataItem) {
+		System.out.print("Handler " + id + " received ");
+		System.out.println(dataItem.getData().length + " bytes at " + dataItem.getTimestamp() + ".");
 	}
 }
