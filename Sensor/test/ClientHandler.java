@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
+
 /*
  * It simulates a server to handle all the data from one sensor for testing.
  * It runs as a separate thread.

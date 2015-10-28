@@ -1,7 +1,9 @@
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /*
  * It creates and controls several sensors to generate and send data using socket.
@@ -13,10 +15,10 @@ public class DataGenerator {
 	/*
 	 * Creating all the sensors as required.
 	 */
-	DataGenerator(SensorConfig config, int sensorNum) {
+	public DataGenerator(SensorConfig config, int sensorNum, String sensorType) {
 		sensorList = new ArrayList<Sensor>();
 		for (int i = 0; i < sensorNum; i++) {
-			Sensor sensor = new Sensor(config, PortInfo.getAddress());
+			Sensor sensor = SensorFactory.getSensor(config, sensorType);
 			sensorList.add(sensor);
 		}
 	}
@@ -31,15 +33,17 @@ public class DataGenerator {
 	}
 
 	public static void main(String[] args) {
+		JSONObject json = JsonReader.readJsonFromFile(args[0]);
+		SensorConfig config;
 		try {
-			Scanner scanner = new Scanner(new FileInputStream(args[0]));
-			SensorConfig config = new SensorConfig(scanner.nextInt(),
-					scanner.nextInt(), scanner.nextInt());
+			config = new SensorConfig(json.getInt("byteNum"),
+					json.getInt("intervalLength"), json.getInt("itemNum"));
 			DataGenerator dataGenerator = new DataGenerator(config,
-					scanner.nextInt());
+					json.getInt("sensorNum"), json.getString("sensorType"));
 			dataGenerator.start();
-			scanner.close();
-		} catch (FileNotFoundException e) {
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}

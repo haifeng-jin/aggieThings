@@ -1,0 +1,10 @@
+
+public class SensorFactory {
+	public static Sensor getSensor(SensorConfig config, String sensorType) {
+		if (sensorType.equals("Sensor")) {
+			
+		}
+		return null;
+		
+	}
+}

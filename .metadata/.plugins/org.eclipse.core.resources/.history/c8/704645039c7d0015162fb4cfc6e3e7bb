@@ -1,0 +1,6 @@
+
+public class SensorFactory {
+	public static Sensor getSensor(String sensorType) {
+		
+	}
+}

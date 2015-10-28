@@ -1,6 +1,4 @@
-/*
- * It stores the configuration information for a sensor to generate data.
- */
+
 
 public class SensorConfig {
 	// Number of bytes in each item.
@@ -10,7 +8,7 @@ public class SensorConfig {
 	// The total number of items need to be send.
 	public int itemNum;
 
-	SensorConfig(int byteNum, int intervalLength, int itemNum) {
+	public SensorConfig(int byteNum, int intervalLength, int itemNum) {
 		this.byteNum = byteNum;
 		this.intermissionLength = intervalLength;
 		this.itemNum = itemNum;

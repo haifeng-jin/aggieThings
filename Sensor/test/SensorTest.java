@@ -1,9 +1,11 @@
 
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 import org.junit.Test;
+
 public class SensorTest {
 
 	/*
@@ -12,7 +14,7 @@ public class SensorTest {
 	@Test
 	public void testRun() {
 		SensorConfig config = new SensorConfig(5, 500, 10);
-		Sensor sensor = new Sensor(config, PortInfo.getAddress());
+		Sensor sensor = SensorFactory.getSensor(config, "Sensor");
 		ServerSocket server;
 		Socket socket;
 

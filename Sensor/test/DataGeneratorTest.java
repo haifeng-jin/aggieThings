@@ -1,8 +1,10 @@
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 import org.junit.Test;
+
 
 public class DataGeneratorTest {
 	/*
@@ -13,7 +15,7 @@ public class DataGeneratorTest {
 	public void test() {
 		SensorConfig config = new SensorConfig(10, 500, 5);
 		int sensorNum = 10;
-		DataGenerator generator = new DataGenerator(config, sensorNum);
+		DataGenerator generator = new DataGenerator(config, sensorNum, "Sensor");
 
 		ServerSocket server;
 		Socket socket;

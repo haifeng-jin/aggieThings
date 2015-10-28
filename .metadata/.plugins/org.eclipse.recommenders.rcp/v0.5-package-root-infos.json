@@ -1,0 +1,249 @@
+[
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "e92e176e0b03b54cf7219cd317c0334299ecdde1",
+    "jarFileModificationDate": "2015-10-27T11:35:41-05:00",
+    "location": "/usr/lib/jvm/java-8-oracle/jre/lib/ext/cldrdata.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "8ce495d7818fc9eeed888a395627c1ab9ce0ea8b",
+    "jarFileModificationDate": "2015-10-27T11:35:41-05:00",
+    "location": "/usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "58b95b2da2ea5a049b31647cdcd59539ae1240a4",
+    "jarFileModificationDate": "2015-10-27T11:35:41-05:00",
+    "location": "/usr/lib/jvm/java-8-oracle/jre/lib/jce.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "67094321d5f8238f0ebe59790df5e214f0fd0301",
+    "jarFileModificationDate": "2015-10-27T11:35:41-05:00",
+    "location": "/usr/lib/jvm/java-8-oracle/jre/lib/ext/nashorn.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "junit",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "4e031bb61df09069aeb2bffb4019e7a5034a4ee0",
+    "jarFileModificationDate": "2013-05-17T11:05:12-05:00",
+    "location": "/home/rainydays/Software/eclipse_java/plugins/org.junit_4.11.0.v201303080030/junit.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "1df8cae61ad7b8c5ec4cac1c089c5c749e75fb5d",
+    "jarFileModificationDate": "2015-10-27T11:35:41-05:00",
+    "location": "/usr/lib/jvm/java-8-oracle/jre/lib/ext/localedata.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "java-json",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "edad9c5de6fb8df07c535a47045956026011ffa3",
+    "jarFileModificationDate": "2013-10-16T17:04:42-05:00",
+    "location": "/home/rainydays/Git/aggieThings/Sensor/java-json.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "32b672a6b44ca0e86cb3b1ece42fb6e5db7ea251",
+    "jarFileModificationDate": "2015-10-27T11:35:41-05:00",
+    "location": "/usr/lib/jvm/java-8-oracle/jre/lib/ext/zipfs.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "5d649c899676d95b6b0f493d809b323e94bbf512",
+    "jarFileModificationDate": "2015-10-27T11:35:41-05:00",
+    "location": "/usr/lib/jvm/java-8-oracle/jre/lib/ext/jfxrt.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "a8143d57e9ccc869101564474b41431505ef9ecd",
+    "jarFileModificationDate": "2015-10-27T11:35:40-05:00",
+    "location": "/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "3f881e3b34693a96cd3d9e20d6aeabae98757359",
+    "jarFileModificationDate": "2015-10-27T11:35:41-05:00",
+    "location": "/usr/lib/jvm/java-8-oracle/jre/lib/ext/sunpkcs11.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "b5e58012ae86042cf6eabd7628c6da4bf00eb331",
+    "jarFileModificationDate": "2015-10-27T11:35:41-05:00",
+    "location": "/usr/lib/jvm/java-8-oracle/jre/lib/ext/dnsns.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "955b154b74ae31020f80ee4d1633ac883c26f503",
+    "jarFileModificationDate": "2015-10-27T11:35:41-05:00",
+    "location": "/usr/lib/jvm/java-8-oracle/jre/lib/ext/jaccess.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "71a71a7eabda6c2411db33e0fd4fd83b59ed289d",
+    "jarFileModificationDate": "2015-10-27T11:35:41-05:00",
+    "location": "/usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "12e36303b2b48c20f5de54391054d6d6da748e5e",
+    "jarFileModificationDate": "2015-10-27T11:35:41-05:00",
+    "location": "/usr/lib/jvm/java-8-oracle/jre/lib/resources.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "16706ca094b63bf7cc47abba8621b1e17953db90",
+    "jarFileModificationDate": "2015-10-27T11:35:41-05:00",
+    "location": "/usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "org.hamcrest.core",
+    "version": {
+      "major": 1,
+      "minor": 3,
+      "micro": 0,
+      "qualifier": "v201303031735"
+    },
+    "jarFileFingerprint": "5ed9fe32ab1d2b18bec7cac0a044090100f327ba",
+    "jarFileModificationDate": "2014-02-24T04:59:57-06:00",
+    "location": "/home/rainydays/Software/eclipse_java/plugins/org.hamcrest.core_1.3.0.v201303031735.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "82a0f9c5cbc2b79bdb6cfe80487691e232b26f9c",
+    "jarFileModificationDate": "2015-10-27T11:35:41-05:00",
+    "location": "/usr/lib/jvm/java-8-oracle/jre/lib/ext/sunec.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "29820464260229b133c39965832ec39ba1b5e363",
+    "jarFileModificationDate": "2015-10-27T11:35:41-05:00",
+    "location": "/usr/lib/jvm/java-8-oracle/jre/lib/ext/sunjce_provider.jar",
+    "javaRuntime": true
+  }
+]

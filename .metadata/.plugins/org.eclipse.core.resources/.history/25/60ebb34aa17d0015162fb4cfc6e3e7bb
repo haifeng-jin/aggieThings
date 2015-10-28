@@ -1,0 +1,23 @@
+package sensor;
+
+import generator.PortInfo;
+
+public class SensorFactory {
+	public static Sensor getSensor(SensorConfig config, String sensorType) {
+		if (sensorType.equals("Sensor")) {
+			return new Sensor(config, PortInfo.getAddress());
+		}
+		if (sensorType.equals("")) {
+			return new VideoSensor(config, PortInfo.getAddress());
+		}
+		if (sensorType.equals("")) {
+			return new WearableSensor(config, PortInfo.getAddress());
+		}
+		if (sensorType.equals("")) {
+			
+			return new ActuatableSensor(config, PortInfo.getAddress());
+		}
+		return null;
+		
+	}
+}
