@@ -14,3 +14,8 @@
 /SensorFactory.class
 /VideoSensor.class
 /WearableSensor.class
+/ClientHandlerForTests.class
+/Server.class
+/Sensor
+/common
+/server

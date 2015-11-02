@@ -6,6 +6,12 @@ import java.net.Socket;
 
 import org.junit.Test;
 
+import common.PortInfo;
+
+import sensor.Sensor;
+import sensor.SensorConfig;
+import sensor.SensorFactory;
+
 public class SensorTest {
 
 	/*
@@ -23,7 +29,7 @@ public class SensorTest {
 			sensor.start();
 			socket = server.accept();
 
-			ClientHandler handler = new ClientHandler(config, socket);
+			ClientHandlerForTests handler = new ClientHandlerForTests(config, socket);
 			//The assertions are in the thread.
 			new Thread(handler).start();
 			//Wait for the thread to end.

@@ -4,7 +4,7 @@
 <fullyQualifiedTypeName name="generator.DataGenerator"/>
 <fullyQualifiedTypeName name="sensor.DataItem"/>
 <fullyQualifiedTypeName name="sensor.SensorConfig"/>
-<fullyQualifiedTypeName name="sensor.Sensor"/>
 <fullyQualifiedTypeName name="generator.PortInfo"/>
 <fullyQualifiedTypeName name="sensor.SensorFactory"/>
+<fullyQualifiedTypeName name="sensor.Sensor"/>
 </qualifiedTypeNameHistroy>
