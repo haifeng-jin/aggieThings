@@ -1,9 +1,0 @@
-
-public class DataItem {
-
-	public Object getData() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-}

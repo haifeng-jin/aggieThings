@@ -10,7 +10,6 @@ import common.PortInfo;
 
 import sensor.Sensor;
 import sensor.SensorConfig;
-import sensor.SensorFactory;
 
 public class SensorTest {
 
@@ -20,12 +19,12 @@ public class SensorTest {
 	@Test
 	public void testRun() {
 		SensorConfig config = new SensorConfig(5, 500, 10);
-		Sensor sensor = SensorFactory.getSensor(config, "Sensor");
+		Sensor sensor = new Sensor(config, PortInfo.getAddress());
 		ServerSocket server;
 		Socket socket;
 
 		try {
-			server = new ServerSocket(PortInfo.getPort());
+			server = new ServerSocket(PortInfo.getAggregatorPort());
 			sensor.start();
 			socket = server.accept();
 

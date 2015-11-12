@@ -20,13 +20,13 @@ public class DataGeneratorTest {
 	public void test() {
 		SensorConfig config = new SensorConfig(10, 500, 5);
 		int sensorNum = 10;
-		DataGenerator generator = new DataGenerator(config, sensorNum, "Sensor");
+		DataGenerator generator = new DataGenerator(config, sensorNum);
 
 		ServerSocket server;
 		Socket socket;
 
 		try {
-			server = new ServerSocket(PortInfo.getPort());
+			server = new ServerSocket(PortInfo.getAggregatorPort());
 			generator.start();
 			ClientHandlerForTests[] handler = new ClientHandlerForTests[sensorNum];
 

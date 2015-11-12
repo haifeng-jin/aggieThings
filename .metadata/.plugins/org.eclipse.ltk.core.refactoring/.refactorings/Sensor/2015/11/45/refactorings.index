@@ -15,3 +15,12 @@
 1446482457670	Delete elements
 1446482481604	Copy compilation units
 1446482484538	Delete elements
+1446489833996	Rename type 'ClientHandler'
+1446489910882	Move compilation unit
+1446490811705	Move compilation unit
+1446498334027	Delete elements
+1446498813974	Rename type 'Router'
+1446839997765	Rename package 'router'
+1446851483308	Rename method 'getPort'
+1446851983875	Copy compilation unit
+1446851994631	Rename type 'CopyOfSensorHandler'

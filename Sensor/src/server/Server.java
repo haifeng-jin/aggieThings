@@ -1,4 +1,6 @@
 package server;
+import handler.AggregatorHandler;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -15,13 +17,13 @@ public class Server {
 		Socket socket;
 
 		try {
-			server = new ServerSocket(PortInfo.getPort());
+			server = new ServerSocket(PortInfo.getServerPort());
 			int handlerCount = 0;
 
 			// Handle one sensor in a separate thread at a time.
 			while (true) {
 				socket = server.accept();
-				ClientHandler handler = new ClientHandler(socket, handlerCount++);
+				AggregatorHandler handler = new AggregatorHandler(socket, handlerCount++);
 				new Thread(handler).start();
 			}
 		} catch (IOException e) {

@@ -1,0 +1,14 @@
+package aggregator;
+
+import java.util.concurrent.BlockingQueue;
+
+import common.DataItem;
+
+public class Uploader {
+	
+	BlockingQueue<DataItem> uploadBuffer;
+
+	public Uploader(BlockingQueue<DataItem> uploadBuffer) {
+	}
+
+}

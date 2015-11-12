@@ -3,9 +3,10 @@ package generator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import common.JsonReader;
+import common.PortInfo;
 import sensor.Sensor;
 import sensor.SensorConfig;
-import sensor.SensorFactory;
 
 import java.util.ArrayList;
 
@@ -19,10 +20,10 @@ public class DataGenerator {
 	/*
 	 * Creating all the sensors as required.
 	 */
-	public DataGenerator(SensorConfig config, int sensorNum, String sensorType) {
+	public DataGenerator(SensorConfig config, int sensorNum) {
 		sensorList = new ArrayList<Sensor>();
 		for (int i = 0; i < sensorNum; i++) {
-			Sensor sensor = SensorFactory.getSensor(config, sensorType);
+			Sensor sensor = new Sensor(config, PortInfo.getAddress());
 			sensorList.add(sensor);
 		}
 	}
@@ -43,7 +44,7 @@ public class DataGenerator {
 			config = new SensorConfig(json.getInt("byteNum"),
 					json.getInt("intervalLength"), json.getInt("itemNum"));
 			DataGenerator dataGenerator = new DataGenerator(config,
-					json.getInt("sensorNum"), json.getString("sensorType"));
+					json.getInt("sensorNum"));
 			dataGenerator.start();
 		} catch (NumberFormatException e) {
 			e.printStackTrace();

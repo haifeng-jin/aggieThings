@@ -3,5 +3,4 @@
 	"intervalLength":500,
 	"itemNum":10,
 	"sensorNum":15,
-	"sensorType":"VideoSensor"
 }

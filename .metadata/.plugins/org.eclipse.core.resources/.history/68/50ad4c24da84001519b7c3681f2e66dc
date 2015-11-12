@@ -1,0 +1,26 @@
+package aggregator;
+
+import java.util.concurrent.BlockingQueue;
+
+import common.DataItem;
+
+public class Uploader implements Runnable{
+	
+	BlockingQueue<DataItem> uploadBuffer;
+
+	public Uploader(BlockingQueue<DataItem> uploadBuffer) {
+		this.uploadBuffer = uploadBuffer;
+	}
+
+	public void run() {
+		while (true) {
+			try {
+				uploadBuffer.take();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+}

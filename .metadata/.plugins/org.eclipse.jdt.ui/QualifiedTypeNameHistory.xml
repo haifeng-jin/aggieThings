@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
-<fullyQualifiedTypeName name="generator.DataGenerator"/>
 <fullyQualifiedTypeName name="sensor.DataItem"/>
-<fullyQualifiedTypeName name="sensor.SensorConfig"/>
 <fullyQualifiedTypeName name="generator.PortInfo"/>
-<fullyQualifiedTypeName name="sensor.SensorFactory"/>
+<fullyQualifiedTypeName name="sun.management.Sensor"/>
+<fullyQualifiedTypeName name="sensor.SensorConfig"/>
 <fullyQualifiedTypeName name="sensor.Sensor"/>
+<fullyQualifiedTypeName name="sensor.SensorFactory"/>
+<fullyQualifiedTypeName name="generator.DataGenerator"/>
+<fullyQualifiedTypeName name="java.io.ObjectInputStream"/>
+<fullyQualifiedTypeName name="common.DataItem"/>
+<fullyQualifiedTypeName name="java.net.ServerSocket"/>
+<fullyQualifiedTypeName name="handler.SensorHandler"/>
+<fullyQualifiedTypeName name="java.util.concurrent.BlockingQueue"/>
+<fullyQualifiedTypeName name="java.util.concurrent.ArrayBlockingQueue"/>
+<fullyQualifiedTypeName name="com.sun.jmx.snmp.Timestamp"/>
+<fullyQualifiedTypeName name="java.sql.Timestamp"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.net.Socket"/>
+<fullyQualifiedTypeName name="common.PortInfo"/>
+<fullyQualifiedTypeName name="java.io.ObjectOutputStream"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="handler.AggregatorHandler"/>
 </qualifiedTypeNameHistroy>
