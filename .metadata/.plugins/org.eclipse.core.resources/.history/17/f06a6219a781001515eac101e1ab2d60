@@ -1,0 +1,12 @@
+package router;
+
+import java.util.ArrayList;
+
+import common.DataItem;
+
+public class Aggregator {
+	ArrayList<DataItem> UploadBuffer;
+	public static void main(String[] args) {
+		
+	}
+}

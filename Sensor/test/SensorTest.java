@@ -1,9 +1,16 @@
 
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 import org.junit.Test;
+
+import common.PortInfo;
+
+import sensor.Sensor;
+import sensor.SensorConfig;
+
 public class SensorTest {
 
 	/*
@@ -17,11 +24,11 @@ public class SensorTest {
 		Socket socket;
 
 		try {
-			server = new ServerSocket(PortInfo.getPort());
+			server = new ServerSocket(PortInfo.getAggregatorPort());
 			sensor.start();
 			socket = server.accept();
 
-			ClientHandler handler = new ClientHandler(config, socket);
+			ClientHandlerForTests handler = new ClientHandlerForTests(config, socket);
 			//The assertions are in the thread.
 			new Thread(handler).start();
 			//Wait for the thread to end.

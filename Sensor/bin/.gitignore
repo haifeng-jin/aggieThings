@@ -1,9 +1,11 @@
-/ClientHandler.class
-/DataGenerator.class
+/ClientHandlerForTests.class
 /DataGeneratorTest.class
-/PortInfo.class
-/Sensor.class
-/SensorConfig.class
 /SensorConfigTest.class
 /SensorTest.class
-/DataItem.class
+/common
+/generator
+/handler
+/router
+/sensor
+/server
+/aggregator
