@@ -1,0 +1,13 @@
+package handler;
+
+import java.net.Socket;
+
+public class Handler {
+	Socket client;
+	int id;
+
+	public Handler(Socket client, int id) {
+		this.client = client;
+		this.id = id;
+	}
+}
