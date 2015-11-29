@@ -12,11 +12,18 @@ import java.util.concurrent.BlockingQueue;
 import common.DataItem;
 import common.PortInfo;
 
+/*
+ * Aggregator receives data from the sensors and upload to the cloud.
+ * It can be actuated by calling start() after construction.
+ * It attaches timestamps to the DataItem received.  
+ */
+
 public class Aggregator {
 	BlockingQueue<DataItem> uploadBuffer;
 	ArrayList<SensorHandler> handlerList;
 	Uploader uploader;
 
+	//bufferSize is the maximum number of DataItems the buffer can hold. 
 	Aggregator(int bufferSize) {
 		uploadBuffer = new ArrayBlockingQueue<DataItem> (bufferSize);
 		handlerList = new ArrayList<SensorHandler>();

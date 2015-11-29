@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy 2 elements to &apos;Sensor/src/(default package)&apos;&#x0A;- Original project: &apos;Server&apos;&#x0A;- Destination element: &apos;Sensor/src/(default package)&apos;&#x0A;- Original elements:&#x0A;     Server.java&#x0A;     ClientHandler.java" description="Copy compilation units" destination="=Sensor/src&lt;" element1="/src&lt;{Server.java" element2="/src&lt;{ClientHandler.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1446481676418" units="2" version="1.0"/>
-</session>

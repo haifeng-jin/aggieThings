@@ -1,7 +1,0 @@
-package handler;
-
-import java.net.Socket;
-
-public class Handler {
-	Socket client;
-}

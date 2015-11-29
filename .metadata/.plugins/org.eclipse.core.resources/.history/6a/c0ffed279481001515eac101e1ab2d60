@@ -1,8 +1,0 @@
-package router;
-
-public class Router {
-	ArrayList<DataItem> UploadBuffer;
-	public static void main(String[] args) {
-		
-	}
-}

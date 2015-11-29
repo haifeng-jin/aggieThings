@@ -1,5 +1,9 @@
 package common;
 
+/*
+ * PortInfo is a class stores all the information needed for socket connection
+ * like the IP addresses and port.
+ */
 
 public class PortInfo {
 	private static String address = "127.0.0.1";

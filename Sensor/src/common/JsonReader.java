@@ -13,6 +13,11 @@ import java.nio.charset.Charset;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/*
+ * JsonReader reads json objects from varies sources.
+ * It uses a library of json objects in java-json.jar
+ */
+
 public class JsonReader {
 
 	private static String readAll(Reader rd) {

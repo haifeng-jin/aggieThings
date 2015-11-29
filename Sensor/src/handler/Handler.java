@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
+/*
+ * Handler is a abstract class which is the superclass for all handlers
+ * in socket connections.
+ */
 public abstract class Handler implements Runnable{
 	Socket client;
 	int id;
