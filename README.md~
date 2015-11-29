@@ -1,9 +1,0 @@
-#AggieThings Documentation
-
-##Architecture
-The following figure shows how this IoT simulator works.
-
-![alt text](https://docs.google.com/drawings/d/1rbJk8jpd1BLOrh4lfPErCu1P0rGmb6Z7BI78QjneTek/pub?w=960&h=720 "Title")
-
-All the arrows in the figure represents Socket Connections in the network. Multiple sensors send data to one aggregator. The aggregator uploads the data to the cloud. Currently there is only one aggregator and one cloud server.
-
