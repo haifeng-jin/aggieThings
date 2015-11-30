@@ -1,0 +1,27 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+
+    test {
+        java {
+            srcDir 'test'
+        }
+    }
+}
+
+repositories {
+   mavenCentral()
+   jcenter()
+}
+
+dependencies {
+   compile 'org.json:json:20090211'
+   compile 'junit:junit:4.11'
+   compile "org.mockito:mockito-core:1.+"
+ }
