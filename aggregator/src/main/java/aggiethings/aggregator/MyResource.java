@@ -1,17 +1,14 @@
-package aggie.things.aggregator;
+package aggiethings.aggregator;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import aggie.things.common.DataItem;
-
 /**
  * Root resource (exposed at "myresource" path)
  */
-@Path("my")
+@Path("myresource")
 public class MyResource {
 
     /**
@@ -21,14 +18,8 @@ public class MyResource {
      * @return String that will be returned as a text/plain response.
      */
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
         return "Got it!";
-    }
-
-    @POST
-	@Produces(MediaType.APPLICATION_JSON)
-    public DataItem getTodos(DataItem item) {
-		return item;
     }
 }
