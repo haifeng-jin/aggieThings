@@ -1,4 +1,4 @@
-package aggregator;
+package aggie.things.aggregator;
 
 import handler.SensorHandler;
 

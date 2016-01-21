@@ -1,4 +1,4 @@
-package aggregator;
+package aggie.things.aggregator;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
