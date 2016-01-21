@@ -5,8 +5,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.concurrent.BlockingQueue;
 
-import common.DataItem;
-import common.PortInfo;
+import aggie.things.common.DataItem;
+import aggie.things.common.PortInfo;
 
 /*
  * The uploader is a single thread running in parallel with Aggregator.

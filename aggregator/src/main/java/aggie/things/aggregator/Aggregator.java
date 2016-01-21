@@ -1,6 +1,6 @@
 package aggie.things.aggregator;
 
-import handler.SensorHandler;
+import aggie.things.handler.SensorHandler;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-import common.DataItem;
-import common.PortInfo;
+import aggie.things.common.DataItem;
+import aggie.things.common.PortInfo;
 
 /*
  * Aggregator receives data from the sensors and upload to the cloud.

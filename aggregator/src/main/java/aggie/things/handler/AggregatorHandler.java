@@ -1,10 +1,10 @@
-package handler;
+package aggie.things.handler;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
-import common.DataItem;
+import aggie.things.common.DataItem;
 
 /*
  * It handles all the data from one Aggregator.
