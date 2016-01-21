@@ -1,4 +1,4 @@
-package aggiethings.aggregator;
+package listener;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -7,6 +7,7 @@ import javax.ws.rs.client.WebTarget;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 public class MyResourceTest {
@@ -37,7 +38,7 @@ public class MyResourceTest {
      */
     @Test
     public void testGetIt() {
-        String responseMsg = target.path("myresource").request().get(String.class);
+        String responseMsg = target.path("my").request().get(String.class);
         assertEquals("Got it!", responseMsg);
     }
 }

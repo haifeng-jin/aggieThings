@@ -1,4 +1,4 @@
-package aggiethings.aggregator;
+package listener;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -8,7 +8,7 @@ import javax.ws.rs.core.MediaType;
 /**
  * Root resource (exposed at "myresource" path)
  */
-@Path("myresource")
+@Path("my")
 public class MyResource {
 
     /**
