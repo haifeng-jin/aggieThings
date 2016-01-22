@@ -4,8 +4,8 @@ package generator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import common.JsonReader;
 import common.PortInfo;
+import sensor.JsonReader;
 import sensor.Sensor;
 import sensor.SensorConfig;
 

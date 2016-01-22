@@ -1,4 +1,4 @@
-package aggregator;
+package upload;
 
 import java.util.LinkedList;
 import java.util.Queue;

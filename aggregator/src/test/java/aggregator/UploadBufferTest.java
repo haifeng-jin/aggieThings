@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import common.DataItem;
+import upload.UploadBuffer;
 
 public class UploadBufferTest {
 	
