@@ -6,7 +6,6 @@ package common;
  */
 
 public class PortInfo {
-	private static String address = "127.0.0.1";
 
 	private static int aggregatorPort = 3456;
 	private static int serverPort = 3457;
@@ -18,10 +17,10 @@ public class PortInfo {
 		return aggregatorPort;
 	}
 
-	public static String getAddress() {
-		return new String(address);
+	private PortInfo() {
 	}
 
-	private PortInfo() {
+	public static String getAggregatorAddress() {
+		return "http://localhost:8080/";
 	}
 }

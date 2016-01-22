@@ -2,13 +2,8 @@ package sensor;
 
 
 
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-import java.net.UnknownHostException;
 
 import common.DataItem;
-import common.PortInfo;
 
 /*
  * It simulates a sensor to send data using socket.
@@ -38,35 +33,15 @@ public class Sensor implements Runnable{
 	 */
 	public void run() {
 		try {
-			Socket socketClient = createSocket();
-			ObjectOutputStream outputStream = new ObjectOutputStream(socketClient.getOutputStream());
-
+			DataPoster poster = new DataPoster(serverAddress);
 			//One item at a time.
 			for (int i = 0; i < config.itemNum; i++) {
-				outputStream.writeObject(new DataItem(new byte[config.byteNum]));
+				poster.post(new DataItem(new byte[config.byteNum]));
 				Thread.sleep(config.intermissionLength);
 			}
-			//null indicating the end of this Sensor's data
-			outputStream.writeObject(null);
-
-			outputStream.close();
-			socketClient.close();
-		} catch (IOException e) {
-			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
 
-
-	protected Socket createSocket() {
-		try {
-			return new Socket(serverAddress, PortInfo.getAggregatorPort());
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
 }

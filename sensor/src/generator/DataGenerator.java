@@ -31,7 +31,7 @@ public class DataGenerator {
 	}
 
 	protected Sensor createSensor(SensorConfig config) {
-		return new Sensor(config, PortInfo.getAddress());
+		return new Sensor(config, PortInfo.getAggregatorAddress());
 	}
 
 	/*

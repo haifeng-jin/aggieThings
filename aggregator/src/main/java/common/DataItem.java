@@ -3,8 +3,11 @@ package common;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import javax.xml.bind.annotation.XmlRootElement;
 
 
+
+@XmlRootElement
 public class DataItem implements Serializable{
 
 	/**
@@ -13,6 +16,10 @@ public class DataItem implements Serializable{
 	private static final long serialVersionUID = 1L;
 	Timestamp timestamp;
 	byte[] data;
+	
+	public DataItem() {
+		
+	}
 	
 	public DataItem(byte[] data) {
 		this.data = data;
