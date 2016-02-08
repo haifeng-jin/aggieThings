@@ -1,4 +1,4 @@
-
+/*
 import generator.DataGenerator;
 
 
@@ -11,12 +11,14 @@ import static org.mockito.Mockito.*;
 
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
+*/
 
 public class DataGeneratorTest {
 	/*
 	 * Test the DataGenerator. Handle each sensor using a separate thread of
 	 * ClientHandler.
 	 */
+	/*
 	@Test
 	public void test() {
 		SensorConfig config = new SensorConfig(10, 500, 5);
@@ -65,4 +67,5 @@ public class DataGeneratorTest {
 		}
 		
 	}
+	*/
 }

@@ -1,6 +1,6 @@
 package generator;
 
-
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,23 +10,44 @@ import sensor.Sensor;
 import sensor.SensorConfig;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /*
  * It creates and controls several sensors to generate and send data using socket.
  */
 public class DataGenerator {
-	ArrayList<Sensor> sensorList;
+	ArrayList<Sensor> sensor;
 	int sensorNum;
-	
+	HashMap<String, SensorConfig> configHash;
 
 	/*
 	 * Creating all the sensors as required.
 	 */
-	public DataGenerator(SensorConfig config, int sensorNum) {
-		sensorList = new ArrayList<Sensor>();
-		for (int i = 0; i < sensorNum; i++) {
-			Sensor sensor = createSensor(config);
-			sensorList.add(sensor);
+
+	public DataGenerator(String path, String address) {
+		try {
+			JSONObject json = JsonReader.readJsonFromFile(path);
+
+			// Reading sensor types
+			JSONArray jsonConfigArray = json.getJSONArray("sensorType");
+			configHash = new HashMap<String, SensorConfig>();
+			for (int i = 0; i < jsonConfigArray.length(); i++) {
+				configHash.put(jsonConfigArray.getJSONObject(i).getString("name"),
+						new SensorConfig(jsonConfigArray.getJSONObject(i)));
+			}
+
+			// Reading sensors
+			JSONArray jsonSensorArray = json.getJSONArray("sensor");
+			sensor = new ArrayList<Sensor>();
+			for (int i = 0; i < jsonSensorArray.length(); i++) {
+				JSONObject jsonSensorObject = jsonSensorArray.getJSONObject(i);
+				SensorConfig config = configHash.get(jsonSensorObject.get("type"));
+				for (int j = 0; j < jsonSensorObject.getInt("number"); j++) {
+					sensor.add(new Sensor(config, address));
+				}
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -38,24 +59,19 @@ public class DataGenerator {
 	 * Start each sensor as a separate thread.
 	 */
 	public void start() {
-		for (Sensor sensor : sensorList) {
-			sensor.start();
+		for (Sensor ins : sensor) {
+			ins.start();
+		}
+	}
+	
+	public void stop() {
+		for (Sensor ins : sensor) {
+			ins.stop();
 		}
 	}
 
 	public static void main(String[] args) {
-		JSONObject json = JsonReader.readJsonFromFile(args[0]);
-		SensorConfig config;
-		try {
-			config = new SensorConfig(json.getInt("byteNum"),
-					json.getInt("intervalLength"), json.getInt("itemNum"));
-			DataGenerator dataGenerator = new DataGenerator(config,
-					json.getInt("sensorNum"));
-			dataGenerator.start();
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+		DataGenerator dataGenerator = new DataGenerator(args[0], PortInfo.getAggregatorAddress());
+		dataGenerator.start();
 	}
 }

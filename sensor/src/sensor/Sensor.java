@@ -14,6 +14,7 @@ import common.DataItem;
 public class Sensor implements Runnable{
 	SensorConfig config;
 	String serverAddress;
+	private boolean running;
 	
 	public Sensor(SensorConfig config, String address) {
 		this.config = config;
@@ -25,9 +26,13 @@ public class Sensor implements Runnable{
 	 * Start the thread.
 	 */
 	public void start() {
+		running = true;
         new Thread(this).start();    
     }    
 
+	public void stop() {
+		running = false;
+	}
 	/*
 	 * @see java.lang.Runnable#run()
 	 */
@@ -35,7 +40,7 @@ public class Sensor implements Runnable{
 		try {
 			DataPoster poster = new DataPoster(serverAddress);
 			//One item at a time.
-			for (int i = 0; i < config.itemNum; i++) {
+			while (running) {
 				poster.post(new DataItem(new byte[config.byteNum]));
 				Thread.sleep(config.intermissionLength);
 			}

@@ -16,17 +16,17 @@ public class SensorConfigTest {
 
 	@Test
 	public void test1() {
-		config = new SensorConfig(1, 2, 3);
+		config = new SensorConfig("a", 1, 2);
+		assertEquals(config.name, "a");
 		assertEquals(config.byteNum, 1);
 		assertEquals(config.intermissionLength, 2);
-		assertEquals(config.itemNum, 3);
 	}
 
 	@Test
 	public void test2() {
-		config = new SensorConfig(1, 2, (1<< 31));
+		config = new SensorConfig("b", 1, 2);
+		assertEquals(config.name, "b");
 		assertEquals(config.byteNum, 1);
 		assertEquals(config.intermissionLength, 2);
-		assertEquals(config.itemNum, (1<<31));
 	}
 }
