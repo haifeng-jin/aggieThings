@@ -1,9 +1,10 @@
-package listener;
+package aggiethings.webresource;
 
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
+import aggiethings.cloud.CloudServer;
 import common.PortInfo;
 import upload.UploadBuffer;
 import upload.Uploader;
@@ -17,9 +18,11 @@ import java.net.URI;
  */
 public class Main {
 	// Base URI the Grizzly HTTP server will listen on
-	public static final String BASE_URI = PortInfo.getAggregatorAddress();
+	public static final String BASE_URI = PortInfo.baseURI;
 	private static Uploader uploader;
 	public static UploadBuffer buffer;
+	static CloudServer cloud;
+	private static HttpServer server;
 
 	/**
 	 * Starts Grizzly HTTP server exposing JAX-RS resources defined in this
@@ -27,20 +30,25 @@ public class Main {
 	 * 
 	 * @return Grizzly HTTP server.
 	 */
+	public static void start() {
+		server = startServer();
+		startUploader();
+		startCloud();
+	}
+
 	public static HttpServer startServer() {
 		// create a resource config that scans for JAX-RS resources and
 		// providers
 		// in aggiethings.aggregator package
-		final ResourceConfig rc = new ResourceConfig().packages("listener");
+		final ResourceConfig rc = new ResourceConfig().packages("aggiethings.webresource");
 
 		// create and start a new instance of grizzly http server
 		// exposing the Jersey application at BASE_URI
 		return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
 	}
 
-	public static void start() {
-		startUploader();
-		startServer();
+	private static void startCloud() {
+		cloud = new CloudServer();
 	}
 
 	private static void startUploader() {
@@ -49,6 +57,9 @@ public class Main {
 		new Thread(uploader).start();
 	}
 
+	public static void stop() {
+		server.shutdown();
+	}
 	/**
 	 * Main method.
 	 * 

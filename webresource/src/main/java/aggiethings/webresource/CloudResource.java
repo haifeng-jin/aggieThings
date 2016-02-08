@@ -1,4 +1,4 @@
-package listener;
+package aggiethings.webresource;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -12,8 +12,8 @@ import common.DataItem;
 /**
  * Root resource (exposed at "myresource" path)
  */
-@Path("my")
-public class MyResource {
+@Path("server")
+public class CloudResource {
 
     /**
      * Method handling HTTP GET requests. The returned object will be sent
@@ -27,6 +27,12 @@ public class MyResource {
         return "Got it!";
     }
     
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public DataItem query() {
+        return Main.cloud.query();
+    }
+
     @POST
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.TEXT_PLAIN)
@@ -38,8 +44,8 @@ public class MyResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public DataItem receive(DataItem item) {
-    	Main.buffer.add(item);
-		return item;
+    	Main.cloud.insert(item);
+    	return item;
     }
     
 }

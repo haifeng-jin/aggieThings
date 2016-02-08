@@ -40,5 +40,20 @@ public class DataItem implements Serializable{
 	public void setData(byte[] data) {
 		this.data = data;
 	}
-
+	
+	@Override
+	public boolean equals(Object obj) {
+		DataItem item = (DataItem) obj;
+		if (!timestamp.equals(item.getTimestamp()))
+			return false;
+		System.out.println(timestamp);
+		System.out.println(item.getTimestamp());
+		for (int i = 0; i < data.length; i++) {
+			System.out.println(item.getData()[i]);
+			System.out.println(data[i]);
+			if (item.getData()[i] != data[i])
+				return false;
+		}
+		return true;
+	}
 }

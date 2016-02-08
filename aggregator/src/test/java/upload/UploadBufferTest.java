@@ -1,4 +1,4 @@
-package aggregator;
+package upload;
 
 import static org.junit.Assert.*;
 

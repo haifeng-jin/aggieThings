@@ -17,9 +17,9 @@ public class DataPoster {
 
 	public void post(DataItem item) {
 		// TODO Auto-generated method stub
-		String response = target.path("my").request(MediaType.APPLICATION_JSON)
+		String response = target.request(MediaType.APPLICATION_JSON)
 				.post(Entity.entity(item, MediaType.APPLICATION_JSON), String.class);
-		System.out.println(response);
+		System.out.println("Sensors: " + response);
 	}
 
 }

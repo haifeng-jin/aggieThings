@@ -6,11 +6,16 @@ package common;
  */
 
 public class PortInfo {
+	
+	public static String baseURI = "http://localhost:8080/";
+	public static String aggregatorPath = "aggregator";
+	public static String serverPath = "server";
+
 
 	public static String getAggregatorAddress() {
-		return "http://localhost:8080/aggregator";
+		return baseURI + aggregatorPath;
 	}
 	public static String getServerAddress() {
-		return "http://localhost:8080/server";
+		return baseURI + serverPath;
 	}
 }

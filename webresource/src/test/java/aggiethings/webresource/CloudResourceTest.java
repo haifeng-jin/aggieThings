@@ -1,4 +1,4 @@
-package listener;
+package aggiethings.webresource;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -6,19 +6,25 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
-import org.junit.BeforeClass;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
+import aggiethings.cloud.CloudServer;
 import common.DataItem;
+import common.PortInfo;
 
 import static org.junit.Assert.assertEquals;
 
-public class MyResourceTest {
+import java.sql.Timestamp;
 
-	private static WebTarget target;
 
-	@BeforeClass
-	public static void setUp() throws Exception {
+public class CloudResourceTest {
+
+	private WebTarget target;
+
+	@Before
+	public void setUp() throws Exception {
 		Main.start();
 		// create the client
 		Client c = ClientBuilder.newClient();
@@ -31,7 +37,7 @@ public class MyResourceTest {
 		// c.configuration().enable(new
 		// org.glassfish.jersey.media.json.JsonJaxbFeature());
 
-		target = c.target(Main.BASE_URI);
+		target = c.target(Main.BASE_URI).path(PortInfo.serverPath);
 	}
 
 	/**
@@ -39,15 +45,15 @@ public class MyResourceTest {
 	 */
 	@Test
 	public void testGetIt() {
-		String responseMsg = target.path("my").request().get(String.class);
+		String responseMsg = target.request(MediaType.TEXT_PLAIN).get(String.class);
 		assertEquals("Got it!", responseMsg);
 	}
 
 	@Test
 	public void testEcho() {
 		String item = new String("test");
-		String response = target.path("my").request(MediaType.TEXT_PLAIN)
-				.post(Entity.entity(item, MediaType.TEXT_PLAIN), String.class);
+		String response = target.request(MediaType.TEXT_PLAIN).post(Entity.entity(item, MediaType.TEXT_PLAIN),
+				String.class);
 		assertEquals(item + " received!", response);
 
 	}
@@ -55,9 +61,23 @@ public class MyResourceTest {
 	@Test
 	public void testEcho2() {
 		DataItem item = new DataItem(new byte[1]);
-		DataItem response = target.path("my").request(MediaType.APPLICATION_JSON)
+		DataItem response = target.request(MediaType.APPLICATION_JSON)
 				.post(Entity.entity(item, MediaType.APPLICATION_JSON), DataItem.class);
 		assertEquals(item.getData()[0], response.getData()[0]);
 	}
 
+	@Test
+	public void testQuery() {
+		CloudServer cloud = Main.cloud;
+		DataItem item = new DataItem(new byte[1]);
+		item.setTimestamp(new Timestamp(1));
+		cloud.insert(item);
+		DataItem response = target.request(MediaType.APPLICATION_JSON).get(DataItem.class);
+		assertEquals(cloud.query(), response);
+	}
+
+	@After
+	public void stop() {
+		Main.stop();
+	}
 }

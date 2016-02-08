@@ -4,10 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>aggiethings</groupId>
-    <artifactId>server</artifactId>
+    <artifactId>webresource</artifactId>
     <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>server</name>
+    <name>webresource</name>
 
     <dependencyManagement>
         <dependencies>
@@ -64,7 +64,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>aggiethings.server.Main</mainClass>
+                    <mainClass>aggiethings.webresource.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>
