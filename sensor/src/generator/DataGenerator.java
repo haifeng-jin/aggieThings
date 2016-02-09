@@ -42,7 +42,7 @@ public class DataGenerator {
 			for (int i = 0; i < jsonSensorArray.length(); i++) {
 				JSONObject jsonSensorObject = jsonSensorArray.getJSONObject(i);
 				SensorConfig config = configHash.get(jsonSensorObject.get("type"));
-				for (int j = 0; j < jsonSensorObject.getInt("number"); j++) {
+				for (int j = 0; j < jsonSensorObject.getInt("quantity"); j++) {
 					sensor.add(new Sensor(config, address));
 				}
 			}
