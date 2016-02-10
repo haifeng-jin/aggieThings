@@ -48,4 +48,10 @@ public class CloudResource {
     	return item;
     }
     
+    @Path("cost/storage")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String cost() {
+    	return Integer.toString(Main.cloud.getStorageCost());
+    }
 }

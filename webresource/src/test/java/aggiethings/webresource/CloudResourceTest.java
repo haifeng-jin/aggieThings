@@ -45,7 +45,7 @@ public class CloudResourceTest {
 	 */
 	@Test
 	public void testGetIt() {
-		String responseMsg = target.request(MediaType.TEXT_PLAIN).get(String.class);
+		String responseMsg = target.request().get(String.class);
 		assertEquals("Got it!", responseMsg);
 	}
 
@@ -61,8 +61,7 @@ public class CloudResourceTest {
 	@Test
 	public void testEcho2() {
 		DataItem item = new DataItem(new byte[1]);
-		DataItem response = target.request(MediaType.APPLICATION_JSON)
-				.post(Entity.entity(item, MediaType.APPLICATION_JSON), DataItem.class);
+		DataItem response = postDataItem(item);
 		assertEquals(item.getData()[0], response.getData()[0]);
 	}
 
@@ -74,6 +73,22 @@ public class CloudResourceTest {
 		cloud.insert(item);
 		DataItem response = target.request(MediaType.APPLICATION_JSON).get(DataItem.class);
 		assertEquals(cloud.query(), response);
+	}
+
+	@Test
+	public void testCost() throws InterruptedException {
+		postDataItem(new DataItem(new byte[20]));
+		postDataItem(new DataItem(new byte[20]));
+		postDataItem(new DataItem(new byte[20]));
+		postDataItem(new DataItem(new byte[20]));
+		Thread.sleep(500);
+		int cost = Integer.parseInt(target.path("cost").path("storage").request().get(String.class));
+		assertEquals(20 * 4, cost);
+	}
+
+	private DataItem postDataItem(DataItem item) {
+		return target.request(MediaType.APPLICATION_JSON)
+				.post(Entity.entity(item, MediaType.APPLICATION_JSON), DataItem.class);
 	}
 
 	@After

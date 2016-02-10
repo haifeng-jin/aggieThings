@@ -7,6 +7,7 @@ import common.DataItem;
 public class CloudServer {
 
 	private ArrayList<DataItem> database;
+	private int storage;
 
 	public CloudServer() {
 		database = new ArrayList<DataItem>();
@@ -14,8 +15,13 @@ public class CloudServer {
 
 	public synchronized void insert(DataItem item) {
 		database.add(item);
+		storage += item.getData().length;
 	}
 
+	/*
+	 * Returns a DataItem whose data is the average of all the bytes received,
+	 * whose timestamp is the last DataItem received.
+	 */
 	public synchronized DataItem query() {
 		DataItem ret = new DataItem();
 		int temp = 0;
@@ -33,6 +39,11 @@ public class CloudServer {
 		ret.setData(data);
 		ret.setTimestamp(database.get(database.size() - 1).getTimestamp());
 		return ret;
+	}
+
+	public int getStorageCost() {
+
+		return storage;
 	}
 
 }
