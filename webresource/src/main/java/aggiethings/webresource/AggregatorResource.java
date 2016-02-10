@@ -42,4 +42,17 @@ public class AggregatorResource {
 		return item;
     }
     
+    @Path("cost/traffic")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String costTraffic() {
+    	return Integer.toString(Main.buffer.getTraffic());
+    }
+
+    @Path("cost/storage")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String costStorage() {
+    	return Integer.toString(Main.buffer.getMaxStorage());
+    }
 }

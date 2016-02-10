@@ -9,6 +9,7 @@ import sensor.JsonReader;
 import sensor.Sensor;
 import sensor.SensorConfig;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -70,8 +71,10 @@ public class DataGenerator {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		DataGenerator dataGenerator = new DataGenerator(args[0], PortInfo.getAggregatorAddress());
 		dataGenerator.start();
+		System.in.read();
+		dataGenerator.stop();
 	}
 }

@@ -1,25 +1,26 @@
 package aggiethings.webresource;
 
+import static org.junit.Assert.*;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
-import org.junit.BeforeClass;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import common.DataItem;
 import common.PortInfo;
 
-import static org.junit.Assert.assertEquals;
-
 public class AggregatorResourceTest {
 
 	private static WebTarget target;
 
-	@BeforeClass
-	public static void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		Main.start();
 		// create the client
 		Client c = ClientBuilder.newClient();
@@ -37,6 +38,7 @@ public class AggregatorResourceTest {
 
 	/**
 	 * Test to see that the message "Got it!" is sent in the response.
+	 * @throws InterruptedException 
 	 */
 	@Test
 	public void testGetIt() {
@@ -54,11 +56,34 @@ public class AggregatorResourceTest {
 	}
 
 	@Test
-	public void testEcho2() {
+	public void testEcho2() throws InterruptedException {
 		DataItem item = new DataItem(new byte[1]);
-		DataItem response = target.request(MediaType.APPLICATION_JSON)
-				.post(Entity.entity(item, MediaType.APPLICATION_JSON), DataItem.class);
+		DataItem response = postDataItem(item);
 		assertEquals(item.getData()[0], response.getData()[0]);
+		Thread.sleep(500);
 	}
 
+	@Test
+	public void testCost() throws InterruptedException {
+		
+		postDataItem(new DataItem(new byte[20]));
+		postDataItem(new DataItem(new byte[40]));
+		postDataItem(new DataItem(new byte[60]));
+		Thread.sleep(500);
+		int traffic = Integer.parseInt(target.path("cost").path("traffic").request().get(String.class));
+		int storage = Integer.parseInt(target.path("cost").path("storage").request().get(String.class));
+		assertEquals(20 + 40 + 60, traffic);
+		assertTrue(storage <= 20 + 40 + 60);
+	}
+	
+	private DataItem postDataItem(DataItem item) {
+		
+		return target.request(MediaType.APPLICATION_JSON)
+				.post(Entity.entity(item, MediaType.APPLICATION_JSON), DataItem.class);
+	}
+
+	@After
+	public void stop() {
+		Main.stop();
+	}
 }
