@@ -7,32 +7,29 @@
 		},
 		{
 			"type":"wearable",
-			"quantity":10
+			"quantity":15
 		},
 		{
 			"type":"plant",
-			"quantity":10
+			"quantity":20
 		}
 	],
 	"sensorType":
 	[
 		{
 			"name":"video",
-			"byteNum":80,
-			"intervalLength":500,
-			"sensorNum":15
+			"byteNum":800,
+			"intervalLength":50,
 		},
 		{
 			"name":"wearable",
 			"byteNum":80,
 			"intervalLength":500,
-			"sensorNum":15
 		},
 		{
 			"name":"plant",
-			"byteNum":80,
-			"intervalLength":500,
-			"sensorNum":15
+			"byteNum":10,
+			"intervalLength":5000,
 		}
 	]
 }

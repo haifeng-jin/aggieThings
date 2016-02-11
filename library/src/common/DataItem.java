@@ -18,11 +18,20 @@ public class DataItem implements Serializable{
 	byte[] data;
 	
 	public DataItem() {
-		
+		this.data = new byte[1];
+		this.timestamp = new Timestamp(System.currentTimeMillis());
 	}
 	
 	public DataItem(byte[] data) {
 		this.data = data;
+		this.timestamp = new Timestamp(System.currentTimeMillis());
+	}
+
+	public DataItem(String string) {
+		String[] stringArray = string.split("\\|"); 
+		this.timestamp = Timestamp.valueOf(stringArray[0]);
+		this.data = stringArray[1].getBytes();
+
 	}
 
 	public Timestamp getTimestamp() {
@@ -46,14 +55,17 @@ public class DataItem implements Serializable{
 		DataItem item = (DataItem) obj;
 		if (!timestamp.equals(item.getTimestamp()))
 			return false;
-		System.out.println(timestamp);
-		System.out.println(item.getTimestamp());
+		if (data.length != item.getData().length)
+			return false;
 		for (int i = 0; i < data.length; i++) {
-			System.out.println(item.getData()[i]);
-			System.out.println(data[i]);
 			if (item.getData()[i] != data[i])
 				return false;
 		}
 		return true;
+	}
+	
+	@Override
+	public String toString() {
+		return timestamp.toString() + "|" + (new String(data));
 	}
 }

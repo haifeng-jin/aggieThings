@@ -41,7 +41,7 @@ public class Sensor implements Runnable{
 			DataPoster poster = new DataPoster(serverAddress);
 			//One item at a time.
 			while (running) {
-				poster.post(new DataItem(new byte[config.byteNum]));
+				poster.postText(new DataItem(new byte[config.byteNum]));
 				Thread.sleep(config.intermissionLength);
 			}
 		} catch (InterruptedException e) {

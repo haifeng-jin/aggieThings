@@ -48,15 +48,15 @@ public class AggregatorResourceTest {
 
 	@Test
 	public void testEcho() {
-		String item = new String("test");
-		String response = target.request(MediaType.TEXT_PLAIN)
-				.post(Entity.entity(item, MediaType.TEXT_PLAIN), String.class);
-		assertEquals(item + " received!", response);
+		DataItem item = new DataItem(new byte[3]);
+		DataItem response = target.request(MediaType.APPLICATION_JSON)
+				.post(Entity.entity(item.toString(), MediaType.TEXT_PLAIN), DataItem.class);
+		assertEquals(item, response);
 
 	}
 
 	@Test
-	public void testEcho2() throws InterruptedException {
+	public void testReceive() throws InterruptedException {
 		DataItem item = new DataItem(new byte[1]);
 		DataItem response = postDataItem(item);
 		assertEquals(item.getData()[0], response.getData()[0]);

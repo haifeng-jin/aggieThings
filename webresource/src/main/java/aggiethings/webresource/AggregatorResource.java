@@ -28,10 +28,12 @@ public class AggregatorResource {
     }
     
     @POST
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.TEXT_PLAIN)
-    public String echo(String item) {
-    	return item + " received!";
+    public DataItem echo(String itemString) {
+    	DataItem item = new DataItem(itemString);
+    	Main.buffer.add(item);
+    	return item;
     }
     
     @POST
