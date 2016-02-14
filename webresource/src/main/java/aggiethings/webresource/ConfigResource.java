@@ -7,6 +7,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import aggiethings.tools.AddressManager;
+
 @Path("config/address")
 public class ConfigResource {
 
@@ -16,14 +18,12 @@ public class ConfigResource {
      *
      * @return String that will be returned as a text/plain response.
      */
-	static private String aggregatorAddress = "http://localhost:8080/aggregator";
-	static private String cloudAddress = "http://localhost:8080/cloud";
 
 	@Path("aggregator")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getAggregatorAddress() {
-        return aggregatorAddress;
+        return AddressManager.getAggregatorAddress();
     }
 
 	@Path("aggregator")
@@ -31,15 +31,15 @@ public class ConfigResource {
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
     public String setAggregatorAddress(String address) {
-		aggregatorAddress = address;
-        return aggregatorAddress;
+		AddressManager.setAggregatorAddress(address);
+        return address;
     }
 
 	@Path("cloud")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getCloudAddress() {
-        return cloudAddress;
+        return AddressManager.getCloudAddress();
     }
 
 	@Path("cloud")
@@ -47,7 +47,7 @@ public class ConfigResource {
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
     public String setCloudAddress(String address) {
-		cloudAddress = address;
-        return cloudAddress;
+		AddressManager.setCloudAddress(address);
+        return address;
     }
 } 
