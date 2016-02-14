@@ -27,7 +27,7 @@ public class Uploader implements Runnable {
 		this.uploadBuffer = uploadBuffer;
 
 		Client c = ClientBuilder.newClient();
-		target = c.target(PortInfo.getServerAddress());
+		target = c.target(PortInfo.getCloudAddress());
 	}
 
 	public void run() {

@@ -12,7 +12,7 @@ import common.DataItem;
 /**
  * Root resource (exposed at "myresource" path)
  */
-@Path("server")
+@Path("cloud")
 public class CloudResource {
 
     /**

@@ -37,7 +37,7 @@ public class CloudResourceTest {
 		// c.configuration().enable(new
 		// org.glassfish.jersey.media.json.JsonJaxbFeature());
 
-		target = c.target(Main.BASE_URI).path(PortInfo.serverPath);
+		target = c.target(Main.BASE_URI).path(PortInfo.cloudPath);
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class CloudResourceTest {
 	 */
 	@Test
 	public void testGetIt() {
-		String responseMsg = target.request().get(String.class);
+		String responseMsg = target.request(MediaType.TEXT_PLAIN).get(String.class);
 		assertEquals("Got it!", responseMsg);
 	}
 

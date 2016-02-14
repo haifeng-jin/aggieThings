@@ -9,13 +9,13 @@ public class PortInfo {
 	
 	public static String baseURI = "http://localhost:8080/";
 	public static String aggregatorPath = "aggregator";
-	public static String serverPath = "server";
+	public static String cloudPath = "cloud";
 
 
 	public static String getAggregatorAddress() {
 		return baseURI + aggregatorPath;
 	}
-	public static String getServerAddress() {
-		return baseURI + serverPath;
+	public static String getCloudAddress() {
+		return baseURI + cloudPath;
 	}
 }
