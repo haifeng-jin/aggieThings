@@ -40,6 +40,7 @@ public class Uploader implements Runnable {
 	}
 
 	private void upload(DataItem item) {
+		System.out.println(PortInfo.getCloudAddress());
 		DataItem response = target.request(MediaType.APPLICATION_JSON)
 				.post(Entity.entity(item, MediaType.APPLICATION_JSON), DataItem.class);
 		System.out.println("Aggregator: " + response);

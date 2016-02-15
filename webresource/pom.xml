@@ -38,6 +38,24 @@
             <version>4.9</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+			<groupId>aggiethings</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+			<groupId>aggiethings</groupId>
+			<artifactId>cloud</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+			<groupId>aggiethings</groupId>
+			<artifactId>aggregator</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

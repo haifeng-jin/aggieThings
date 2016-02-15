@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import aggiethings.tools.AddressManagerTest;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,10 +18,13 @@ public class ConfigResourceTest {
 
 	private WebTarget target;
 	private Object tempAddress = "http://localhost:8080/testAddress";
+	private AddressManagerTest temp = new AddressManagerTest();
+	private Main m;
 
 	@Before
 	public void setUp() throws Exception {
-		Main.start();
+		m = new Main();
+		m.start();
 		// create the client
 		Client c = ClientBuilder.newClient();
 
@@ -31,7 +35,7 @@ public class ConfigResourceTest {
 		// --
 		// c.configuration().enable(new
 		// org.glassfish.jersey.media.json.JsonJaxbFeature());
-
+		temp.setUp();
 		target = c.target(Main.BASE_URI).path("config/address");
 	}
 
@@ -70,6 +74,7 @@ public class ConfigResourceTest {
 
 	@After
 	public void stop() {
-		Main.stop();
+		m.stop();
+		temp.setBack();
 	}
 }

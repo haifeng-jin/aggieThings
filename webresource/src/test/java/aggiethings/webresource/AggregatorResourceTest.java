@@ -46,7 +46,6 @@ public class AggregatorResourceTest {
 		assertEquals("Got it!", responseMsg);
 	}
 
-	@Test
 	public void testEcho() {
 		DataItem item = new DataItem(new byte[3]);
 		DataItem response = target.request(MediaType.APPLICATION_JSON)
@@ -55,15 +54,13 @@ public class AggregatorResourceTest {
 
 	}
 
-	@Test
 	public void testReceive() throws InterruptedException {
 		DataItem item = new DataItem(new byte[1]);
 		DataItem response = postDataItem(item);
 		assertEquals(item.getData()[0], response.getData()[0]);
-		Thread.sleep(500);
+		Thread.sleep(5000);
 	}
 
-	@Test
 	public void testCost() throws InterruptedException {
 		
 		postDataItem(new DataItem(new byte[20]));

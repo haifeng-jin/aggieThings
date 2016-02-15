@@ -2,6 +2,7 @@ package aggiethings.tools;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,5 +27,10 @@ public class AddressManagerTest {
 		AddressManager.setCloudAddress(tempAddress);
 		String response = AddressManager.getCloudAddress();
 		assertEquals(tempAddress, response);
+	}
+	
+	@After
+	public void setBack() {
+		AddressManager.baseAddress = "src/main/resources/";
 	}
 }
