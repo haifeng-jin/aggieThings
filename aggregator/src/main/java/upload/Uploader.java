@@ -18,6 +18,7 @@ public class Uploader implements Runnable {
 
 	UploadBuffer uploadBuffer;
 	private WebTarget target;
+	private boolean running;
 
 	Uploader() {
 
@@ -32,11 +33,16 @@ public class Uploader implements Runnable {
 
 	public void run() {
 		// Upload one DataItem at a time.
-		while (true) {
+		running = true;
+		while (running) {
 			DataItem item = uploadBuffer.take();
 			if (item != null)
 				upload(item);
 		}
+	}
+
+	public void stop() {
+		running = false;
 	}
 
 	private void upload(DataItem item) {

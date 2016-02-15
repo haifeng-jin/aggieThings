@@ -58,6 +58,7 @@ public class Main {
 	}
 
 	public static void stop() {
+		uploader.stop();
 		server.shutdown();
 	}
 	/**
@@ -71,7 +72,7 @@ public class Main {
 		System.out.println(String.format(
 				"Jersey app started with WADL available at " + "%sapplication.wadl\nHit enter to stop it...",
 				BASE_URI));
-		stop();
 		System.in.read();
+		stop();
 	}
 }
