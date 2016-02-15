@@ -19,12 +19,10 @@ public class ConfigResourceTest {
 	private WebTarget target;
 	private Object tempAddress = "http://localhost:8080/testAddress";
 	private AddressManagerTest temp = new AddressManagerTest();
-	private Main m;
 
 	@Before
 	public void setUp() throws Exception {
-		m = new Main();
-		m.start();
+		Main.start();
 		// create the client
 		Client c = ClientBuilder.newClient();
 
@@ -74,7 +72,7 @@ public class ConfigResourceTest {
 
 	@After
 	public void stop() {
-		m.stop();
+		Main.stop();
 		temp.setBack();
 	}
 }
