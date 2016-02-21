@@ -1,5 +1,6 @@
 package upload;
 
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -30,6 +31,7 @@ public class UploadBuffer {
 	}
 
 	public synchronized void add(DataItem item) {
+		item.addTimestamp(new Timestamp(System.currentTimeMillis()));
 		buffer.add(item);
 		storage += item.getData().length;
 		if (storage > maxStorage) {

@@ -1,5 +1,6 @@
 package aggiethings.cloud;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import common.DataItem;
@@ -14,6 +15,7 @@ public class CloudServer {
 	}
 
 	public synchronized void insert(DataItem item) {
+		item.addTimestamp(new Timestamp(System.currentTimeMillis()));
 		database.add(item);
 		storage += item.getData().length;
 	}
