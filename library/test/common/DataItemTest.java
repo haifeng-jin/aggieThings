@@ -2,6 +2,7 @@ package common;
 
 import static org.junit.Assert.*;
 
+
 import org.junit.Test;
 
 public class DataItemTest {
@@ -29,8 +30,6 @@ public class DataItemTest {
 			item.getData()[i] = (byte) (i + 97);
 			item2.getData()[i] = (byte) (i + 98);
 		}
-		System.out.println(item);
-		System.out.println(item2);
 		assertNotEquals(item, item2);
 	}
 }

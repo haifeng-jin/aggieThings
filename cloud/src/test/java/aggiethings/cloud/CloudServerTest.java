@@ -26,12 +26,12 @@ public class CloudServerTest {
 
 		for (int i = 0; i < size; i++) {
 			DataItem item = new DataItem(byteArray[i]);
-			item.setTimestamp(new Timestamp(i));
+			item.setTimestamp(new Timestamp(i), 0);
 			cloud.insert(item);
 		}
 		DataItem result = cloud.query();
 		DataItem expected = new DataItem(average);
-		expected.setTimestamp(new Timestamp(size - 1));
+		expected.setTimestamp(new Timestamp(size - 1), 0);
 		assertEquals(expected, result);
 	}
 

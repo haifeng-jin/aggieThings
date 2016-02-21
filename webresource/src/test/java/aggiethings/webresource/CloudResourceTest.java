@@ -16,8 +16,6 @@ import common.PortInfo;
 
 import static org.junit.Assert.assertEquals;
 
-import java.sql.Timestamp;
-
 
 public class CloudResourceTest {
 
@@ -69,7 +67,6 @@ public class CloudResourceTest {
 	public void testQuery() {
 		CloudServer cloud = Main.cloud;
 		DataItem item = new DataItem(new byte[1]);
-		item.setTimestamp(new Timestamp(1));
 		cloud.insert(item);
 		DataItem response = target.request(MediaType.APPLICATION_JSON).get(DataItem.class);
 		assertEquals(cloud.query(), response);
