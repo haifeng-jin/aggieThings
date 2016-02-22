@@ -7,8 +7,16 @@ import org.junit.Test;
 public class TimeManagerTest {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testAggregatorTime() {
+		int timeDiff = 30;
+		TimeManager.setAggregatorDiff(timeDiff);
+		assertEquals(timeDiff, TimeManager.getAggregatorDiff());
 	}
 
+	@Test
+	public void testCloudTime() {
+		int timeDiff = 30;
+		TimeManager.setCloudDiff(timeDiff);
+		assertEquals(timeDiff, TimeManager.getCloudDiff());
+	}
 }

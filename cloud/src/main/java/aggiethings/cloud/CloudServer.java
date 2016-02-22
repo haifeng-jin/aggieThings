@@ -7,7 +7,7 @@ import common.DataItem;
 
 public class CloudServer {
 
-	private ArrayList<DataItem> database;
+	ArrayList<DataItem> database;
 	private int storage;
 
 	public CloudServer() {

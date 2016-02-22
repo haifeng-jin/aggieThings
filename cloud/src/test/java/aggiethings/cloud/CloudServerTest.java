@@ -31,7 +31,7 @@ public class CloudServerTest {
 		}
 		DataItem result = cloud.query();
 		DataItem expected = new DataItem(average);
-		expected.setTimestamp(new Timestamp(size - 1), 0);
+		expected.setTimestamp(cloud.database.get(cloud.database.size() - 1).getTimestamp());
 		assertEquals(expected, result);
 	}
 
