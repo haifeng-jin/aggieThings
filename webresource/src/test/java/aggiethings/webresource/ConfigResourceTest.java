@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import aggiethings.tools.AddressManagerTest;
+import aggiethings.tools.TimeManager;
 
 import static org.junit.Assert.assertEquals;
 
@@ -34,7 +35,7 @@ public class ConfigResourceTest {
 		// c.configuration().enable(new
 		// org.glassfish.jersey.media.json.JsonJaxbFeature());
 		temp.setUp();
-		target = c.target(Main.BASE_URI).path("config/address");
+		target = c.target(Main.BASE_URI).path("config");
 	}
 
 	/**
@@ -42,32 +43,44 @@ public class ConfigResourceTest {
 	 */
 	@Test
 	public void testSetAggregatorAddress() {
-		String responseMsg = target.path("aggregator").request(MediaType.TEXT_PLAIN)
+		String responseMsg = target.path("address").path("aggregator").request(MediaType.TEXT_PLAIN)
 				.post(Entity.entity(tempAddress, MediaType.TEXT_PLAIN), String.class);
 		assertEquals(tempAddress, responseMsg);
 	}
 
 	@Test
 	public void testGetAggregatorAddress() {
-		target.path("aggregator").request(MediaType.TEXT_PLAIN)
+		target.path("address").path("aggregator").request(MediaType.TEXT_PLAIN)
 				.post(Entity.entity(tempAddress, MediaType.TEXT_PLAIN), String.class);
-		String responseMsg = target.path("aggregator").request(MediaType.TEXT_PLAIN).get(String.class);
+		String responseMsg = target.path("address").path("aggregator").request(MediaType.TEXT_PLAIN).get(String.class);
 		assertEquals(tempAddress, responseMsg);
 	}
 
 	@Test
 	public void testSetCloudAddress() {
-		String responseMsg = target.path("cloud").request(MediaType.TEXT_PLAIN)
+		String responseMsg = target.path("address").path("cloud").request(MediaType.TEXT_PLAIN)
 				.post(Entity.entity(tempAddress, MediaType.TEXT_PLAIN), String.class);
 		assertEquals(tempAddress, responseMsg);
 	}
 
 	@Test
 	public void testGetCloudAddress() {
-		target.path("cloud").request(MediaType.TEXT_PLAIN)
+		target.path("address").path("cloud").request(MediaType.TEXT_PLAIN)
 				.post(Entity.entity(tempAddress, MediaType.TEXT_PLAIN), String.class);
-		String responseMsg = target.path("cloud").request(MediaType.TEXT_PLAIN).get(String.class);
+		String responseMsg = target.path("address").path("cloud").request(MediaType.TEXT_PLAIN).get(String.class);
 		assertEquals(tempAddress, responseMsg);
+	}
+
+	@Test
+	public void testGetCloudTime() {
+		String responseMsg = target.path("time").path("cloud").request(MediaType.TEXT_PLAIN).get(String.class);
+		assertEquals(Integer.toString(TimeManager.getCloudDiff()), responseMsg);
+	}
+
+	@Test
+	public void testGetAggregatorTime() {
+		String responseMsg = target.path("time").path("aggregator").request(MediaType.TEXT_PLAIN).get(String.class);
+		assertEquals(Integer.toString(TimeManager.getAggregatorDiff()), responseMsg);
 	}
 
 	@After

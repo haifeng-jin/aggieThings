@@ -8,8 +8,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import aggiethings.tools.AddressManager;
+import aggiethings.tools.TimeManager;
 
-@Path("config/address")
+@Path("config")
 public class ConfigResource {
 
     /**
@@ -19,14 +20,14 @@ public class ConfigResource {
      * @return String that will be returned as a text/plain response.
      */
 
-	@Path("aggregator")
+	@Path("address/aggregator")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getAggregatorAddress() {
         return AddressManager.getAggregatorAddress();
     }
 
-	@Path("aggregator")
+	@Path("address/aggregator")
     @POST
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
@@ -35,14 +36,14 @@ public class ConfigResource {
         return address;
     }
 
-	@Path("cloud")
+	@Path("address/cloud")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getCloudAddress() {
         return AddressManager.getCloudAddress();
     }
 
-	@Path("cloud")
+	@Path("address/cloud")
     @POST
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
@@ -50,4 +51,18 @@ public class ConfigResource {
 		AddressManager.setCloudAddress(address);
         return address;
     }
+	
+	@Path("time/cloud")
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getCloudTimeDiff() {
+		return Integer.toString(TimeManager.getCloudDiff());
+	}
+
+	@Path("time/aggregator")
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getAggregatorTimeDiff() {
+		return Integer.toString(TimeManager.getAggregatorDiff());
+	}
 } 
