@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import aggiethings.tools.AddressManagerTest;
 import aggiethings.tools.TimeManager;
+import common.FileGetter;
 
 import static org.junit.Assert.assertEquals;
 
@@ -53,6 +54,7 @@ public class ConfigResourceTest {
 		target.path("address").path("aggregator").request(MediaType.TEXT_PLAIN)
 				.post(Entity.entity(tempAddress, MediaType.TEXT_PLAIN), String.class);
 		String responseMsg = target.path("address").path("aggregator").request(MediaType.TEXT_PLAIN).get(String.class);
+		System.out.println(responseMsg);
 		assertEquals(tempAddress, responseMsg);
 	}
 
@@ -81,6 +83,12 @@ public class ConfigResourceTest {
 	public void testGetAggregatorTime() {
 		String responseMsg = target.path("time").path("aggregator").request(MediaType.TEXT_PLAIN).get(String.class);
 		assertEquals(Integer.toString(TimeManager.getAggregatorDiff()), responseMsg);
+	}
+	
+	@Test
+	public void testGetConfigFile() {
+		String responseMsg = target.path("file").request(MediaType.TEXT_PLAIN).get(String.class);
+		assertEquals(FileGetter.getContent(ConfigResource.configFilePath), responseMsg);
 	}
 
 	@After

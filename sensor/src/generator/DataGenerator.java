@@ -27,7 +27,7 @@ public class DataGenerator {
 
 	public DataGenerator(String path, String address) {
 		try {
-			JSONObject json = JsonReader.readJsonFromFile(path);
+			JSONObject json = JsonReader.readJsonFromUrl(path);
 
 			// Reading sensor types
 			JSONArray jsonConfigArray = json.getJSONArray("sensorType");

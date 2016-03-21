@@ -1,10 +1,10 @@
 package aggiethings.tools;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
-import java.util.Scanner;
+
+import common.FileLineGetter;
 
 public class AddressManager {
 
@@ -39,6 +39,8 @@ public class AddressManager {
 	}
 
 	private static String getContent(String path) {
+		return new FileLineGetter(baseAddress + path).nextLine();
+		/*
 		String line = null;
 		try {
 			Scanner scanner = new Scanner(new FileInputStream(baseAddress + path));
@@ -48,6 +50,7 @@ public class AddressManager {
 			e.printStackTrace();
 		}
 		return line;
+		*/
 	}
 
 
