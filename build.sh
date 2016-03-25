@@ -1,15 +1,15 @@
 cd library
-mvn clean install
+mvn clean install | grep "BUILD\|ERROR"
 cd ..
 cd sensor
-mvn clean install
+mvn clean install | grep "BUILD\|ERROR"
 cd ..
 cd aggregator
-mvn clean install
+mvn clean install | grep "BUILD\|ERROR"
 cd ..
 cd cloud
-mvn clean install
+mvn clean install | grep "BUILD\|ERROR"
 cd ..
-cd webresource
-mvn clean install
+cd config
+mvn clean install | grep "BUILD\|ERROR"
 cd ..
