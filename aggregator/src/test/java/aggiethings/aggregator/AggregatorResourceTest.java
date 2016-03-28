@@ -1,6 +1,7 @@
 package aggiethings.aggregator;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
 
@@ -14,16 +15,26 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import aggiethings.upload.UploadBuffer;
+import aggiethings.upload.Uploader;
 import common.DataItem;
 import common.PortInfo;
 
 public class AggregatorResourceTest {
 
 	private static WebTarget target;
+	private final Integer maxStorage = 15;
+	private final Integer traffic = 20;
 
 	@Before
 	public void setUp() throws Exception {
 		Main.start();
+		UploadBuffer buffer = mock(UploadBuffer.class);
+		Uploader uploader = mock(Uploader.class);
+		when(buffer.getMaxStorage()).thenReturn(maxStorage);
+		when(buffer.getTraffic()).thenReturn(traffic);
+		Main.buffer = buffer;
+		Main.uploader = uploader;
 		// create the client
 		Client c = ClientBuilder.newClient();
 
@@ -67,14 +78,10 @@ public class AggregatorResourceTest {
 	@Test
 	public void testCost() throws InterruptedException {
 		
-		postDataItem(new DataItem(new byte[20]));
-		postDataItem(new DataItem(new byte[40]));
-		postDataItem(new DataItem(new byte[60]));
-		//Thread.sleep(500);
-		//int traffic = Integer.parseInt(target.path("cost").path("traffic").request().get(String.class));
-		int storage = Integer.parseInt(target.path("cost").path("storage").request().get(String.class));
-		//assertEquals(20 + 40 + 60, traffic);
-		assertTrue(storage <= 20 + 40 + 60);
+		Integer responseTraffic = Integer.parseInt(target.path("cost").path("traffic").request().get(String.class));
+		Integer responseMaxStorage = Integer.parseInt(target.path("cost").path("storage").request().get(String.class));
+		assertEquals(traffic, responseTraffic);
+		assertEquals(maxStorage, responseMaxStorage);
 	}
 	
 	private DataItem postDataItem(DataItem item) {

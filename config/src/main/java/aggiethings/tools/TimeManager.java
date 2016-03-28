@@ -1,5 +1,10 @@
 package aggiethings.tools;
 
+/**
+ * 
+ * @author Haifeng Jin
+ *
+ */
 public class TimeManager {
 	
 	private static int aggregatorDiff = 0;

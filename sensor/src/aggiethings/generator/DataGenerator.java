@@ -1,13 +1,13 @@
-package generator;
+package aggiethings.generator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import aggiethings.sensor.Sensor;
+import aggiethings.sensor.SensorConfig;
 import common.PortInfo;
 import common.JsonReader;
-import sensor.Sensor;
-import sensor.SensorConfig;
 
 import java.io.IOException;
 import java.util.ArrayList;

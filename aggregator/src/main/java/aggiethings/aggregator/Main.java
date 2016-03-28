@@ -25,8 +25,8 @@ import javax.ws.rs.core.MediaType;
 public class Main {
 	// Base URI the Grizzly HTTP server will listen on
 	public static final String BASE_URI = PortInfo.aggregatorBaseURI;
-	private static Uploader uploader;
-	public static UploadBuffer buffer;
+	static Uploader uploader;
+	static UploadBuffer buffer;
 	private static HttpServer server;
 	static String cloudAddress;
 
@@ -46,7 +46,6 @@ public class Main {
 		// create and start a new instance of grizzly http server
 		// exposing the Jersey application at BASE_URI
 		server = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
-		startUploader();
 	}
 
 	private static void startUploader() {
@@ -76,6 +75,7 @@ public class Main {
 	 */
 	public static void main(String[] args) throws IOException {
 		start();
+		startUploader();
 		postAddressToConfig(getCurrentAddress());
 		new Thread(uploader).start();
 		System.out.println(String.format(

@@ -1,5 +1,7 @@
 package aggiethings.cloud;
 
+import java.sql.Timestamp;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -10,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import common.DataItem;
 
 /**
- * Root resource (exposed at "myresource" path)
+ * Root resource (exposed at "cloud" path)
  */
 @Path("cloud")
 public class CloudResource {
@@ -33,6 +35,10 @@ public class CloudResource {
         return Main.cloud.query();
     }
 
+    /**
+     * @param item A DataItem received in its string form.
+     * @return The string appended by "received!".
+     */
     @POST
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.TEXT_PLAIN)
@@ -40,10 +46,16 @@ public class CloudResource {
     	return item + " received!";
     }
     
+    /**
+     * Inserting the item posted to the database after attaching an extra time stamp to it.
+     * @param item A DataItem posted to the path.
+     * @return The item with an extra time stamp from the cloud.
+     */
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public DataItem receive(DataItem item) {
+		item.addTimestamp(new Timestamp(System.currentTimeMillis()));
     	Main.cloud.insert(item);
     	return item;
     }

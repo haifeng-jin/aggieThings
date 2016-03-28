@@ -1,3 +1,4 @@
+package aggiethings.generator;
 /*
 import generator.DataGenerator;
 

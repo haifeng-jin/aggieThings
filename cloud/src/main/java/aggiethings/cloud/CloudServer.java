@@ -1,6 +1,5 @@
 package aggiethings.cloud;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import common.DataItem;
@@ -14,14 +13,19 @@ public class CloudServer {
 		database = new ArrayList<DataItem>();
 	}
 
+	/**
+	 * Insert the item to the database.
+	 * Currently use an ArrayList<DataItem> as the database.
+	 * @param item The DataItem to insert.
+	 */
 	public synchronized void insert(DataItem item) {
-		item.addTimestamp(new Timestamp(System.currentTimeMillis()));
 		database.add(item);
 		storage += item.getData().length;
 	}
 
-	/*
-	 * Returns a DataItem whose data is the average of all the bytes received,
+	/**
+	 * 
+	 * @return A DataItem whose data is the average of all the bytes received,
 	 * whose timestamp is the last DataItem received.
 	 */
 	public synchronized DataItem query() {
@@ -43,8 +47,11 @@ public class CloudServer {
 		return ret;
 	}
 
+	/**
+	 * 
+	 * @return The storage used by the DataItems received.
+	 */
 	public int getStorageCost() {
-
 		return storage;
 	}
 

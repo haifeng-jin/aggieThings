@@ -28,10 +28,12 @@ public class Uploader implements Runnable {
 		this.uploadBuffer = uploadBuffer;
 
 		Client c = ClientBuilder.newClient();
+		String address = PortInfo.getCloudAddress();
 		try {
-		target = c.target(PortInfo.getCloudAddress());
-		} catch (Exception e) {
-			System.out.println(e);
+		target = c.target(address);
+		} catch (NullPointerException e) {
+			System.out.println("The address String is null. Set it to empty string.");
+			target = c.target("");
 		}
 	}
 

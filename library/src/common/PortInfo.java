@@ -24,6 +24,12 @@ public class PortInfo {
 		return target.path(aggregatorPath).request(MediaType.TEXT_PLAIN).get(String.class);
 	}
 	public static String getCloudAddress() {
-		return target.path(cloudPath).request(MediaType.TEXT_PLAIN).get(String.class);
+		String ret = null;
+		try {
+			ret = target.path(cloudPath).request(MediaType.TEXT_PLAIN).get(String.class);
+		} catch (Exception e) {
+			System.out.println("Error occured during getting cloud address from config server.");
+		}
+		return ret;
 	}
 }

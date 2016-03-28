@@ -12,6 +12,7 @@ import aggiethings.tools.TimeManager;
 import common.FileGetter;
 
 @Path("config")
+//TODO: The class should only call functions from Main, not explicitly managing the details.
 public class ConfigResource {
 
     static String configFilePath = "config.json";

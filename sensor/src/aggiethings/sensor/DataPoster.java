@@ -1,4 +1,4 @@
-package sensor;
+package aggiethings.sensor;
 
 import common.DataItem;
 import javax.ws.rs.client.Client;
