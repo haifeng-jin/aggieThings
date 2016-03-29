@@ -3,6 +3,7 @@ package aggiethings.tools;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.util.HashMap;
 
 import common.FileLineGetter;
 
@@ -14,29 +15,34 @@ import common.FileLineGetter;
 public class AddressManager {
 
 	String baseAddress;
+	private String cloudAddress = "";
+	private HashMap<Integer, String> aggregatorAddress = new HashMap<Integer, String>();
 
 	public AddressManager(String addressfolderpath) {
 		baseAddress = addressfolderpath;
 	}
 
-	public String getAggregatorAddress() {
-		return getContent("aggregatorAddress");
+	public String getAggregatorAddress(int id) {
+		return aggregatorAddress.get(id);
+		//return getContent("aggregatorAddress");
 	}
 
-	public void setAggregatorAddress(String tempAddress) {
-		setContent("aggregatorAddress", tempAddress);
+	public void setAggregatorAddress(int id, String tempAddress) {
+		aggregatorAddress.put(id, tempAddress);
+		//setContent("aggregatorAddress", tempAddress);
 	}
 
 	public void setCloudAddress(String tempAddress) {
-		setContent("cloudAddress", tempAddress);
-		
+		cloudAddress = tempAddress;
+		//setContent("cloudAddress", tempAddress);
 	}
 
 	public String getCloudAddress() {
-		return getContent("cloudAddress");
+		return cloudAddress;
+		//return getContent("cloudAddress");
 	}	
 
-	private void setContent(String path, String tempAddress) {
+	void setContent(String path, String tempAddress) {
 		try {
 			PrintWriter writer = new PrintWriter(new FileOutputStream(baseAddress + path));
 			writer.println(tempAddress);
@@ -47,7 +53,7 @@ public class AddressManager {
 		
 	}
 
-	private String getContent(String path) {
+	String getContent(String path) {
 		return new FileLineGetter(baseAddress + path).nextLine();
 	}
 

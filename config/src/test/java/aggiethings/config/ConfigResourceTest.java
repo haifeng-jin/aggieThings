@@ -22,7 +22,7 @@ import static org.junit.Assert.assertEquals;
 public class ConfigResourceTest {
 
 	private WebTarget target;
-	private Object tempAddress = "http://localhost:8080/testAddress";
+	private String tempAddress = "http://localhost:8080/testAddress";
 
 	@Before
 	public void setUp() throws Exception {
@@ -46,18 +46,22 @@ public class ConfigResourceTest {
 	 */
 	@Test
 	public void testSetAggregatorAddress() {
-		String responseMsg = target.path("address").path("aggregator").request(MediaType.TEXT_PLAIN)
-				.post(Entity.entity(tempAddress, MediaType.TEXT_PLAIN), String.class);
-		assertEquals(tempAddress, responseMsg);
+		for (int i = 0; i < 10; i++) {
+			String responseMsg = target.path("address").path("aggregator").path(Integer.toString(i))
+					.request(MediaType.TEXT_PLAIN).post(Entity.entity(tempAddress, MediaType.TEXT_PLAIN), String.class);
+			assertEquals(tempAddress, responseMsg);
+		}
 	}
 
 	@Test
 	public void testGetAggregatorAddress() {
-		target.path("address").path("aggregator").request(MediaType.TEXT_PLAIN)
-				.post(Entity.entity(tempAddress, MediaType.TEXT_PLAIN), String.class);
-		String responseMsg = target.path("address").path("aggregator").request(MediaType.TEXT_PLAIN).get(String.class);
-		System.out.println(responseMsg);
-		assertEquals(tempAddress, responseMsg);
+		for (int i = 0; i < 10; i++) {
+			target.path("address").path("aggregator").path(Integer.toString(i)).request(MediaType.TEXT_PLAIN)
+					.post(Entity.entity(tempAddress, MediaType.TEXT_PLAIN), String.class);
+			String responseMsg = target.path("address").path("aggregator").path(Integer.toString(i))
+					.request(MediaType.TEXT_PLAIN).get(String.class);
+			assertEquals(tempAddress, responseMsg);
+		}
 	}
 
 	@Test
@@ -86,7 +90,7 @@ public class ConfigResourceTest {
 		String responseMsg = target.path("time").path("aggregator").request(MediaType.TEXT_PLAIN).get(String.class);
 		assertEquals(Integer.toString(TimeManager.getAggregatorDiff()), responseMsg);
 	}
-	
+
 	@Test
 	public void testGetConfigFile() {
 		String responseMsg = target.path("file").request(MediaType.TEXT_PLAIN).get(String.class);

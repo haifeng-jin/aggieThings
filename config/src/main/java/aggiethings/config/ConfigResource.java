@@ -4,6 +4,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -11,7 +12,6 @@ import aggiethings.tools.TimeManager;
 import common.FileGetter;
 
 @Path("config")
-//TODO: The class should only call functions from Main, not explicitly managing the details.
 public class ConfigResource {
 
     static String configFilePath = "config.json";
@@ -29,19 +29,19 @@ public class ConfigResource {
 		return FileGetter.getContent(configFilePath);
 	}
 
-	@Path("address/aggregator")
+	@Path("address/aggregator/{id}")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String getAggregatorAddress() {
-        return Main.addressManager.getAggregatorAddress();
+    public String getAggregatorAddress(@PathParam("id") int id) {
+        return Main.addressManager.getAggregatorAddress(id);
     }
 
-	@Path("address/aggregator")
+	@Path("address/aggregator/{id}")
     @POST
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
-    public String setAggregatorAddress(String address) {
-		Main.addressManager.setAggregatorAddress(address);
+    public String setAggregatorAddress(@PathParam("id") int id, String address) {
+		Main.addressManager.setAggregatorAddress(id, address);
         return address;
     }
 
