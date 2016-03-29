@@ -1,8 +1,9 @@
 package common;
 
-/*
+/**
  * PortInfo is a class stores all the information needed for socket connection
  * like the IP addresses and port.
+ * @author Haifeng Jin
  */
 
 import javax.ws.rs.client.ClientBuilder;
@@ -20,8 +21,8 @@ public class PortInfo {
 	private static WebTarget target = ClientBuilder.newClient().target(baseURI).path("config/address");
 
 
-	public static String getAggregatorAddress() {
-		return target.path(aggregatorPath).request(MediaType.TEXT_PLAIN).get(String.class);
+	public static String getAggregatorAddress(int id) {
+		return target.path(aggregatorPath).path(Integer.toString(id)).request(MediaType.TEXT_PLAIN).get(String.class);
 	}
 	public static String getCloudAddress() {
 		String ret = null;

@@ -13,21 +13,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/*
+/**
  * It creates and controls several sensors to generate and send data using socket.
+ * @author Haifeng Jin
  */
 public class DataGenerator {
 	ArrayList<Sensor> sensor;
 	int sensorNum;
 	HashMap<String, SensorConfig> configHash;
 
-	/*
+	/**
 	 * Creating all the sensors as required.
+	 * @param configFileUrl
+	 * @param aggregatorAddress
 	 */
-
-	public DataGenerator(String path, String address) {
+	public DataGenerator(String configFileUrl, String aggregatorAddress) {
 		try {
-			JSONObject json = JsonReader.readJsonFromUrl(path);
+			JSONObject json = JsonReader.readJsonFromUrl(configFileUrl);
 
 			// Reading sensor types
 			JSONArray jsonConfigArray = json.getJSONArray("sensorType");
@@ -44,7 +46,7 @@ public class DataGenerator {
 				JSONObject jsonSensorObject = jsonSensorArray.getJSONObject(i);
 				SensorConfig config = configHash.get(jsonSensorObject.get("type"));
 				for (int j = 0; j < jsonSensorObject.getInt("quantity"); j++) {
-					sensor.add(new Sensor(config, address));
+					sensor.add(new Sensor(config, aggregatorAddress));
 				}
 			}
 		} catch (JSONException e) {
@@ -52,11 +54,11 @@ public class DataGenerator {
 		}
 	}
 
-	protected Sensor createSensor(SensorConfig config) {
+/*	protected Sensor createSensor(SensorConfig config) {
 		return new Sensor(config, PortInfo.getAggregatorAddress());
 	}
-
-	/*
+*/
+	/**
 	 * Start each sensor as a separate thread.
 	 */
 	public void start() {
@@ -72,7 +74,7 @@ public class DataGenerator {
 	}
 
 	public static void main(String[] args) throws IOException {
-		DataGenerator dataGenerator = new DataGenerator(args[0], PortInfo.getAggregatorAddress());
+		DataGenerator dataGenerator = new DataGenerator(args[0], PortInfo.getAggregatorAddress(0));
 		dataGenerator.start();
 		System.in.read();
 		dataGenerator.stop();
