@@ -13,6 +13,7 @@ import org.junit.Test;
 import aggiethings.config.ConfigResource;
 import aggiethings.config.Main;
 import aggiethings.tools.AddressManagerTest;
+import aggiethings.tools.AddressManager;
 import aggiethings.tools.TimeManager;
 import common.FileGetter;
 
@@ -22,11 +23,11 @@ public class ConfigResourceTest {
 
 	private WebTarget target;
 	private Object tempAddress = "http://localhost:8080/testAddress";
-	private AddressManagerTest temp = new AddressManagerTest();
 
 	@Before
 	public void setUp() throws Exception {
 		Main.start();
+		Main.addressManager = new AddressManager(AddressManagerTest.addressFolderPath);
 		// create the client
 		Client c = ClientBuilder.newClient();
 
@@ -37,7 +38,6 @@ public class ConfigResourceTest {
 		// --
 		// c.configuration().enable(new
 		// org.glassfish.jersey.media.json.JsonJaxbFeature());
-		temp.setUp();
 		target = c.target(Main.BASE_URI).path("config");
 	}
 
@@ -96,6 +96,5 @@ public class ConfigResourceTest {
 	@After
 	public void stop() {
 		Main.stop();
-		temp.setBack();
 	}
 }

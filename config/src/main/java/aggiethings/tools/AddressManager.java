@@ -13,26 +13,30 @@ import common.FileLineGetter;
  */
 public class AddressManager {
 
-	static String baseAddress = "src/main/resources/";
+	String baseAddress;
 
-	public static String getAggregatorAddress() {
+	public AddressManager(String addressfolderpath) {
+		baseAddress = addressfolderpath;
+	}
+
+	public String getAggregatorAddress() {
 		return getContent("aggregatorAddress");
 	}
 
-	public static void setAggregatorAddress(String tempAddress) {
+	public void setAggregatorAddress(String tempAddress) {
 		setContent("aggregatorAddress", tempAddress);
 	}
 
-	public static void setCloudAddress(String tempAddress) {
+	public void setCloudAddress(String tempAddress) {
 		setContent("cloudAddress", tempAddress);
 		
 	}
 
-	public static String getCloudAddress() {
+	public String getCloudAddress() {
 		return getContent("cloudAddress");
 	}	
 
-	private static void setContent(String path, String tempAddress) {
+	private void setContent(String path, String tempAddress) {
 		try {
 			PrintWriter writer = new PrintWriter(new FileOutputStream(baseAddress + path));
 			writer.println(tempAddress);
@@ -43,7 +47,7 @@ public class AddressManager {
 		
 	}
 
-	private static String getContent(String path) {
+	private String getContent(String path) {
 		return new FileLineGetter(baseAddress + path).nextLine();
 	}
 

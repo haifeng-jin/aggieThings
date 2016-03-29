@@ -14,7 +14,6 @@ public class FileLineGetter {
 		try {
 			scanner = new Scanner(new FileInputStream(path));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

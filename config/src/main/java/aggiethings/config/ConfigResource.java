@@ -7,7 +7,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import aggiethings.tools.AddressManager;
 import aggiethings.tools.TimeManager;
 import common.FileGetter;
 
@@ -34,7 +33,7 @@ public class ConfigResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getAggregatorAddress() {
-        return AddressManager.getAggregatorAddress();
+        return Main.addressManager.getAggregatorAddress();
     }
 
 	@Path("address/aggregator")
@@ -42,7 +41,7 @@ public class ConfigResource {
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
     public String setAggregatorAddress(String address) {
-		AddressManager.setAggregatorAddress(address);
+		Main.addressManager.setAggregatorAddress(address);
         return address;
     }
 
@@ -50,7 +49,7 @@ public class ConfigResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getCloudAddress() {
-        return AddressManager.getCloudAddress();
+        return Main.addressManager.getCloudAddress();
     }
 
 	@Path("address/cloud")
@@ -58,7 +57,7 @@ public class ConfigResource {
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
     public String setCloudAddress(String address) {
-		AddressManager.setCloudAddress(address);
+		Main.addressManager.setCloudAddress(address);
         return address;
     }
 	
