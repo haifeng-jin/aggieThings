@@ -28,6 +28,7 @@ public class AggregatorResourceTest {
 
 	@Before
 	public void setUp() throws Exception {
+		Main.BASE_URI = PortInfo.aggregatorBaseURI[0];
 		Main.start();
 		UploadBuffer buffer = mock(UploadBuffer.class);
 		Uploader uploader = mock(Uploader.class);

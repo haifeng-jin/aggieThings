@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * It creates and controls several sensors to generate and send data using socket.
+ * It creates and controls several sensors to generate and send data using
+ * socket.
+ * 
  * @author Haifeng Jin
  */
 public class DataGenerator {
@@ -22,42 +24,14 @@ public class DataGenerator {
 	int sensorNum;
 	HashMap<String, SensorConfig> configHash;
 
-	/**
-	 * Creating all the sensors as required.
-	 * @param configFileUrl
-	 * @param aggregatorAddress
+	public DataGenerator() {
+		sensor = new ArrayList<Sensor>();
+	}
+
+	/*
+	 * protected Sensor createSensor(SensorConfig config) { return new
+	 * Sensor(config, PortInfo.getAggregatorAddress()); }
 	 */
-	public DataGenerator(String configFileUrl, String aggregatorAddress) {
-		try {
-			JSONObject json = JsonReader.readJsonFromUrl(configFileUrl);
-
-			// Reading sensor types
-			JSONArray jsonConfigArray = json.getJSONArray("sensorType");
-			configHash = new HashMap<String, SensorConfig>();
-			for (int i = 0; i < jsonConfigArray.length(); i++) {
-				configHash.put(jsonConfigArray.getJSONObject(i).getString("name"),
-						new SensorConfig(jsonConfigArray.getJSONObject(i)));
-			}
-
-			// Reading sensors
-			JSONArray jsonSensorArray = json.getJSONArray("sensor");
-			sensor = new ArrayList<Sensor>();
-			for (int i = 0; i < jsonSensorArray.length(); i++) {
-				JSONObject jsonSensorObject = jsonSensorArray.getJSONObject(i);
-				SensorConfig config = configHash.get(jsonSensorObject.get("type"));
-				for (int j = 0; j < jsonSensorObject.getInt("quantity"); j++) {
-					sensor.add(new Sensor(config, aggregatorAddress));
-				}
-			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-	}
-
-/*	protected Sensor createSensor(SensorConfig config) {
-		return new Sensor(config, PortInfo.getAggregatorAddress());
-	}
-*/
 	/**
 	 * Start each sensor as a separate thread.
 	 */
@@ -66,7 +40,7 @@ public class DataGenerator {
 			ins.start();
 		}
 	}
-	
+
 	public void stop() {
 		for (Sensor ins : sensor) {
 			ins.stop();
@@ -74,9 +48,58 @@ public class DataGenerator {
 	}
 
 	public static void main(String[] args) throws IOException {
-		DataGenerator dataGenerator = new DataGenerator(args[0], PortInfo.getAggregatorAddress(0));
+		DataGenerator dataGenerator = new DataGenerator();
+		dataGenerator.config(JsonReader.readJsonFromUrl(args[0]));
 		dataGenerator.start();
 		System.in.read();
 		dataGenerator.stop();
+	}
+
+	void config(JSONObject json) {
+		try {
+			addSensorConfigs(json.getJSONArray("sensorType"));
+			addAggregators(json.getJSONArray("aggregator"));
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void addSensorConfigs(JSONArray jsonConfigArray) throws JSONException {
+		configHash = new HashMap<String, SensorConfig>();
+		for (int i = 0; i < jsonConfigArray.length(); i++) {
+			configHash.put(jsonConfigArray.getJSONObject(i).getString("name"),
+					new SensorConfig(jsonConfigArray.getJSONObject(i)));
+		}
+	}
+
+	public void addAggregators(JSONArray jsonAggregatorArray) throws JSONException {
+		for (int i = 0; i < jsonAggregatorArray.length(); i++) {
+			addAggregator(jsonAggregatorArray.getJSONObject(i));
+		}
+
+	}
+
+	private void addAggregator(JSONObject jsonAggregatorObject) throws JSONException {
+		int id = jsonAggregatorObject.getInt("id");
+		String aggregatorAddress = getAggregatorAddress(id);
+		JSONArray jsonSensorArray = jsonAggregatorObject.getJSONArray("sensor");
+
+		for (int i = 0; i < jsonSensorArray.length(); i++) {
+			addSensors(jsonSensorArray.getJSONObject(i), aggregatorAddress);
+		}
+
+	}
+
+	String getAggregatorAddress(int id) {
+		return PortInfo.getAggregatorAddress(id);
+	}
+
+	private void addSensors(JSONObject jsonSensorObject, String aggregatorAddress) throws JSONException {
+		SensorConfig config = configHash.get(jsonSensorObject.get("type"));
+
+		for (int k = 0; k < jsonSensorObject.getInt("quantity"); k++) {
+			sensor.add(new Sensor(config, aggregatorAddress));
+		}
+
 	}
 }
