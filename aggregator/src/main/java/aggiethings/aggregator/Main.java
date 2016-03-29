@@ -24,12 +24,12 @@ import javax.ws.rs.core.MediaType;
  */
 public class Main {
 	// Base URI the Grizzly HTTP server will listen on
-	public static final String BASE_URI = PortInfo.aggregatorBaseURI;
+	public static String BASE_URI;
 	static Uploader uploader;
 	static UploadBuffer buffer;
 	private static HttpServer server;
 	static String cloudAddress;
-	static String idString;
+	static int id;
 
 	/**
 	 * Starts Grizzly HTTP server exposing JAX-RS resources defined in this
@@ -61,7 +61,7 @@ public class Main {
 	private static void postAddressToConfig(String address) {
 		Client c = ClientBuilder.newClient();
 		WebTarget target = c.target(PortInfo.baseURI).path("config");
-		target.path("address").path("aggregator").path(idString).request(MediaType.TEXT_PLAIN)
+		target.path("address").path("aggregator").path(Integer.toString(id)).request(MediaType.TEXT_PLAIN)
 				.post(Entity.entity(address, MediaType.TEXT_PLAIN), String.class);
 	}
 
@@ -75,7 +75,8 @@ public class Main {
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
-		idString = args[0];
+		id= Integer.valueOf(args[0]);
+		BASE_URI = PortInfo.aggregatorBaseURI[id];
 		start();
 		startUploader();
 		postAddressToConfig(getCurrentAddress());
