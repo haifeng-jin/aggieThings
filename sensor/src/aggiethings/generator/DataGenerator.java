@@ -48,11 +48,16 @@ public class DataGenerator {
 	}
 
 	public static void main(String[] args) throws IOException {
-		DataGenerator dataGenerator = new DataGenerator();
-		dataGenerator.config(JsonReader.readJsonFromUrl(args[0]));
+		DataGenerator dataGenerator = createDataGenerator(JsonReader.readJsonFromUrl(args[0]));
 		dataGenerator.start();
 		System.in.read();
 		dataGenerator.stop();
+	}
+
+	static DataGenerator createDataGenerator(JSONObject json) {
+		DataGenerator generator = new DataGenerator();
+		generator.config(json);
+		return generator;
 	}
 
 	void config(JSONObject json) {
@@ -64,7 +69,7 @@ public class DataGenerator {
 		}
 	}
 
-	public void addSensorConfigs(JSONArray jsonConfigArray) throws JSONException {
+	private void addSensorConfigs(JSONArray jsonConfigArray) throws JSONException {
 		configHash = new HashMap<String, SensorConfig>();
 		for (int i = 0; i < jsonConfigArray.length(); i++) {
 			configHash.put(jsonConfigArray.getJSONObject(i).getString("name"),
@@ -72,7 +77,7 @@ public class DataGenerator {
 		}
 	}
 
-	public void addAggregators(JSONArray jsonAggregatorArray) throws JSONException {
+	private void addAggregators(JSONArray jsonAggregatorArray) throws JSONException {
 		for (int i = 0; i < jsonAggregatorArray.length(); i++) {
 			addAggregator(jsonAggregatorArray.getJSONObject(i));
 		}

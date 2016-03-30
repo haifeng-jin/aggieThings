@@ -23,14 +23,13 @@ public class DataItem implements Serializable {
 	}
 
 	public DataItem(byte[] data) {
+		this();
 		this.data = data;
-		this.timestamp = new ArrayList<Timestamp>();
-		this.timestamp.add(new Timestamp(System.currentTimeMillis()));
 	}
 
 	public DataItem(String string) {
+		this();
 		String[] stringArray = string.split("\\|");
-		this.timestamp = new ArrayList<Timestamp>();
 		for (int i = 0; i < stringArray.length - 1; i++) {
 			this.timestamp.add(Timestamp.valueOf(stringArray[i]));
 		}
