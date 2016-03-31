@@ -40,10 +40,14 @@ public class ConfigResourceTest {
 		// org.glassfish.jersey.media.json.JsonJaxbFeature());
 		target = c.target(Main.BASE_URI).path("config");
 	}
+	
+	@Test
+	public void testGotIt() {
+		String responseMsg = target.request(MediaType.TEXT_PLAIN)
+				.get(String.class);
+		assertEquals("Got it!", responseMsg);
+	}
 
-	/**
-	 * Test to see that the message "Got it!" is sent in the response.
-	 */
 	@Test
 	public void testSetAggregatorAddress() {
 		for (int i = 0; i < 10; i++) {

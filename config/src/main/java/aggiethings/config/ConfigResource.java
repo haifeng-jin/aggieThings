@@ -23,6 +23,12 @@ public class ConfigResource {
      *
      * @return String that will be returned as a text/plain response.
      */
+    
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getText() {
+    	return "Got it!";
+    }
     @Path("file")
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)

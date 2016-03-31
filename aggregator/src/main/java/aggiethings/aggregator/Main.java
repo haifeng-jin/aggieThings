@@ -6,6 +6,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 import aggiethings.upload.UploadBuffer;
 import aggiethings.upload.Uploader;
+import common.PingHttp;
 import common.PortInfo;
 
 import java.io.IOException;
@@ -77,14 +78,22 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		id = Integer.valueOf(args[0]);
 		BASE_URI = PortInfo.aggregatorBaseURI[id];
+
 		start();
+
+		final String configURL = PortInfo.baseURI + "config";
+		PingHttp.wait(configURL);
+
 		postAddressToConfig(getCurrentAddress());
 		startUploader();
+
 		new Thread(uploader).start();
+
 		System.out.println(String.format(
 				"Jersey app started with WADL available at " + "%sapplication.wadl\nHit enter to stop it...",
 				BASE_URI));
 		System.in.read();
+
 		uploader.stop();
 		stop();
 	}

@@ -5,6 +5,7 @@ import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import aggiethings.cloud.CloudServer;
+import common.PingHttp;
 import common.PortInfo;
 
 import java.io.IOException;
@@ -72,7 +73,12 @@ public class Main {
 	 */
 	public static void main(String[] args) throws IOException {
 		start();
+
+		final String configURL = PortInfo.baseURI + "config";
+		PingHttp.wait(configURL);
+
 		postAddressToConfig(getCurrentAddress());
+
 		System.out.println(String.format(
 				"Jersey app started with WADL available at " + "%sapplication.wadl\nHit enter to stop it...",
 				BASE_URI));

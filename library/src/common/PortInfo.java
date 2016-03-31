@@ -29,12 +29,10 @@ public class PortInfo {
 	}
 
 	public static String getCloudAddress() {
-		String ret = null;
-		try {
-			ret = target.path(cloudPath).request(MediaType.TEXT_PLAIN).get(String.class);
-		} catch (Exception e) {
-			System.out.println("Error occured during getting cloud address from config server.");
+		String address = new String(notAvailable);
+		while (address.equals(notAvailable)) {
+			address = target.path(cloudPath).request(MediaType.TEXT_PLAIN).get(String.class);
 		}
-		return ret;
+		return address;
 	}
 }

@@ -8,6 +8,7 @@ import aggiethings.sensor.Sensor;
 import aggiethings.sensor.SensorConfig;
 import common.PortInfo;
 import common.JsonReader;
+import common.PingHttp;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,6 +49,9 @@ public class DataGenerator {
 	}
 
 	public static void main(String[] args) throws IOException {
+		final String configURL = PortInfo.baseURI + "config";
+		PingHttp.wait(configURL);
+
 		DataGenerator dataGenerator = createDataGenerator(JsonReader.readJsonFromUrl(args[0]));
 		dataGenerator.start();
 		System.in.read();
