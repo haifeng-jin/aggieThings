@@ -66,6 +66,7 @@ public class AggregatorResourceTest {
 		DataItem response = target.request(MediaType.APPLICATION_JSON)
 				.post(Entity.entity(item.toString(), MediaType.TEXT_PLAIN), DataItem.class);
 		assertTrue(Arrays.equals(item.getData(), response.getData()));
+
 		assertEquals(item.getTimestamp(0), response.getTimestamp(0));
 	}
 

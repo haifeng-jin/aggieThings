@@ -19,12 +19,12 @@ public class DataItem implements Serializable {
 	public DataItem() {
 		this.data = new byte[1];
 		this.timestamp = new ArrayList<Timestamp>();
-		this.timestamp.add(new Timestamp(System.currentTimeMillis()));
 	}
 
 	public DataItem(byte[] data) {
 		this();
 		this.data = data;
+		this.timestamp.add(new Timestamp(System.currentTimeMillis()));
 	}
 
 	public DataItem(String string) {
@@ -34,6 +34,7 @@ public class DataItem implements Serializable {
 			this.timestamp.add(Timestamp.valueOf(stringArray[i]));
 		}
 		this.data = stringArray[stringArray.length - 1].getBytes();
+		this.timestamp.add(new Timestamp(System.currentTimeMillis()));
 
 	}
 
