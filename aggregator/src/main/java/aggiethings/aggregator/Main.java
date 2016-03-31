@@ -17,7 +17,6 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
-
 /**
  * Main class.
  *
@@ -51,7 +50,7 @@ public class Main {
 
 	private static void startUploader() {
 		buffer = new UploadBuffer(1000);
-		uploader = new Uploader(buffer);
+		uploader = new Uploader(buffer, PortInfo.getCloudAddress());
 	}
 
 	private static String getCurrentAddress() {
@@ -62,12 +61,13 @@ public class Main {
 		Client c = ClientBuilder.newClient();
 		WebTarget target = c.target(PortInfo.baseURI).path("config");
 		target.path("address").path("aggregator").path(Integer.toString(id)).request(MediaType.TEXT_PLAIN)
-				.post(Entity.entity(address, MediaType.TEXT_PLAIN), String.class);
+						.post(Entity.entity(address, MediaType.TEXT_PLAIN), String.class);
 	}
 
 	public static void stop() {
 		server.shutdown();
 	}
+
 	/**
 	 * Main method.
 	 * 
@@ -75,11 +75,11 @@ public class Main {
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
-		id= Integer.valueOf(args[0]);
+		id = Integer.valueOf(args[0]);
 		BASE_URI = PortInfo.aggregatorBaseURI[id];
 		start();
-		startUploader();
 		postAddressToConfig(getCurrentAddress());
+		startUploader();
 		new Thread(uploader).start();
 		System.out.println(String.format(
 				"Jersey app started with WADL available at " + "%sapplication.wadl\nHit enter to stop it...",

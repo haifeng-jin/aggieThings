@@ -7,7 +7,6 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 import common.DataItem;
-import common.PortInfo;
 
 /*
  * The uploader is a single thread running in parallel with Aggregator.
@@ -24,11 +23,10 @@ public class Uploader implements Runnable {
 
 	}
 
-	public Uploader(UploadBuffer uploadBuffer) {
+	public Uploader(UploadBuffer uploadBuffer, String address) {
 		this.uploadBuffer = uploadBuffer;
 
 		Client c = ClientBuilder.newClient();
-		String address = PortInfo.getCloudAddress();
 		try {
 		target = c.target(address);
 		} catch (NullPointerException e) {

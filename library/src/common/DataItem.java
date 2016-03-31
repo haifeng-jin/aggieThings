@@ -3,6 +3,7 @@ package common;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -24,7 +25,6 @@ public class DataItem implements Serializable {
 	public DataItem(byte[] data) {
 		this();
 		this.data = data;
-		this.timestamp.add(new Timestamp(System.currentTimeMillis()));
 	}
 
 	public DataItem(String string) {
@@ -34,14 +34,16 @@ public class DataItem implements Serializable {
 			this.timestamp.add(Timestamp.valueOf(stringArray[i]));
 		}
 		this.data = stringArray[stringArray.length - 1].getBytes();
-		this.timestamp.add(new Timestamp(System.currentTimeMillis()));
+	}
 
+	public void addTimestamp() {
+		this.timestamp.add(new Timestamp(System.currentTimeMillis()));
 	}
 
 	public void addTimestamp(Timestamp timestamp) {
 		this.timestamp.add(timestamp);
 	}
-	
+
 	public ArrayList<Timestamp> getTimestamp() {
 		return timestamp;
 	}
@@ -55,7 +57,12 @@ public class DataItem implements Serializable {
 	}
 
 	public void setTimestamp(Timestamp timestamp, int a) {
-		this.timestamp.set(a, timestamp);
+		try {
+			this.timestamp.set(a, timestamp);
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println("TimeStamp ArrayList out of bounds.");
+			e.printStackTrace();
+		}
 	}
 
 	public byte[] getData() {
@@ -69,22 +76,23 @@ public class DataItem implements Serializable {
 	@Override
 	public boolean equals(Object obj) {
 		DataItem item = (DataItem) obj;
-		if (!timestamp.equals(item.getTimestamp()))
+
+		if (!timestamp.equals(item.getTimestamp())) {
 			return false;
-		if (data.length != item.getData().length)
-			return false;
-		for (int i = 0; i < data.length; i++) {
-			if (item.getData()[i] != data[i])
-				return false;
 		}
+
+		if (!Arrays.equals(data, item.getData())) {
+			System.out.println("**");
+			return false;
+		}
+
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		String ret = new String("");
-		for (int i = 0; i < timestamp.size(); i++)
-		{
+		for (int i = 0; i < timestamp.size(); i++) {
 			ret += timestamp.get(i) + "|";
 		}
 		return ret + (new String(data));

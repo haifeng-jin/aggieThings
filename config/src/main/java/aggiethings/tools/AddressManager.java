@@ -22,22 +22,22 @@ public class AddressManager {
 		baseAddress = addressfolderpath;
 	}
 
-	public String getAggregatorAddress(int id) {
+	public synchronized String getAggregatorAddress(int id) {
 		return aggregatorAddress.get(id);
 		//return getContent("aggregatorAddress");
 	}
 
-	public void setAggregatorAddress(int id, String tempAddress) {
+	public synchronized void setAggregatorAddress(int id, String tempAddress) {
 		aggregatorAddress.put(id, tempAddress);
 		//setContent("aggregatorAddress", tempAddress);
 	}
 
-	public void setCloudAddress(String tempAddress) {
+	public synchronized void setCloudAddress(String tempAddress) {
 		cloudAddress = tempAddress;
 		//setContent("cloudAddress", tempAddress);
 	}
 
-	public String getCloudAddress() {
+	public synchronized String getCloudAddress() {
 		return cloudAddress;
 		//return getContent("cloudAddress");
 	}	

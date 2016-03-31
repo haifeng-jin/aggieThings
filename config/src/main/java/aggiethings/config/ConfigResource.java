@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 import aggiethings.tools.TimeManager;
 import common.FileGetter;
+import common.PortInfo;
 
 @Path("config")
 public class ConfigResource {
@@ -33,7 +34,10 @@ public class ConfigResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getAggregatorAddress(@PathParam("id") int id) {
-        return Main.addressManager.getAggregatorAddress(id);
+		String address = Main.addressManager.getAggregatorAddress(id);
+		if (address == null)
+			return PortInfo.notAvailable;
+        return address;
     }
 
 	@Path("address/aggregator/{id}")
@@ -49,7 +53,10 @@ public class ConfigResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getCloudAddress() {
-        return Main.addressManager.getCloudAddress();
+		String address = Main.addressManager.getCloudAddress();
+		if (address == null)
+			return PortInfo.notAvailable;
+        return address;
     }
 
 	@Path("address/cloud")

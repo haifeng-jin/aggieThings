@@ -1,7 +1,5 @@
 package aggiethings.cloud;
 
-import java.sql.Timestamp;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -55,7 +53,7 @@ public class CloudResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public DataItem receive(DataItem item) {
-		item.addTimestamp(new Timestamp(System.currentTimeMillis()));
+    	item.addTimestamp();
     	Main.cloud.insert(item);
     	return item;
     }

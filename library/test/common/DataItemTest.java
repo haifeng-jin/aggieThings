@@ -12,6 +12,8 @@ public class DataItemTest {
 	public void testToString() {
 		DataItem item = new DataItem(new byte[100]);
 		DataItem item2 = new DataItem(item.toString());
+		System.out.println(item);
+		System.out.println(item2);
 		assertEquals(item, item2);
 	}
 	
@@ -37,6 +39,7 @@ public class DataItemTest {
 	@Test
 	public void testStampArray() {
 		DataItem item = new DataItem(new byte[3]);
+		item.addTimestamp();
 		item.setTimestamp(new Timestamp(0), 0);
 		item.addTimestamp(new Timestamp(1));
 		item.addTimestamp(new Timestamp(2));

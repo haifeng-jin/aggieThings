@@ -22,7 +22,7 @@ public class Sensor implements Runnable{
 	}
 
 
-	/*
+	/**
 	 * Start the thread.
 	 */
 	public void start() {
@@ -33,15 +33,15 @@ public class Sensor implements Runnable{
 	public void stop() {
 		running = false;
 	}
-	/*
-	 * @see java.lang.Runnable#run()
-	 */
+
 	public void run() {
 		try {
 			DataPoster poster = new DataPoster(serverAddress);
 			//One item at a time.
 			while (running) {
-				poster.postText(new DataItem(new byte[config.byteNum]));
+				DataItem item = new DataItem(new byte[config.byteNum]);
+				item.addTimestamp();
+				poster.postJSON(item);
 				Thread.sleep(config.intermissionLength);
 			}
 		} catch (InterruptedException e) {

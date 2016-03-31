@@ -32,11 +32,8 @@ public class AggregatorResource {
     @Consumes(MediaType.TEXT_PLAIN)
     public DataItem echo(String itemString) {
     	DataItem item = new DataItem(itemString);
-		System.out.println(item.getTimestamp(0));
-		System.out.println(item.getTimestamp(1));
+    	item.addTimestamp();
     	Main.buffer.add(item);
-//		System.out.println(item.getTimestamp(0));
-//		System.out.println(item.getTimestamp(1));
     	return item;
     }
     
@@ -44,6 +41,7 @@ public class AggregatorResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public DataItem receive(DataItem item) {
+    	item.addTimestamp();
     	Main.buffer.add(item);
 		return item;
     }
