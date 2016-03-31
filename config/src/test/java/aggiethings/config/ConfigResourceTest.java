@@ -101,6 +101,14 @@ public class ConfigResourceTest {
 		assertEquals(FileGetter.getContent(ConfigResource.configFilePath), responseMsg);
 	}
 
+	@Test
+	public void testGetAggregatorId() {
+		for (int i = 0; i < 10; i++) {
+			String responseMsg = target.path("aggregator").path("id").request(MediaType.TEXT_PLAIN).get(String.class);
+			int id = Integer.valueOf(responseMsg);
+			assertEquals(i, id);
+		}
+	}
 	@After
 	public void stop() {
 		Main.stop();

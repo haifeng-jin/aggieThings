@@ -5,6 +5,7 @@ import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import aggiethings.tools.AddressManager;
+import aggiethings.tools.AggregatorIdManager;
 import common.PortInfo;
 
 import java.io.IOException;
@@ -20,6 +21,7 @@ public class Main {
 	public final static String BASE_URI = PortInfo.baseURI;
 	private static HttpServer server;
 	static AddressManager addressManager;
+	public static AggregatorIdManager aggregatorIdManager;
 
 	/**
 	 * Starts Grizzly HTTP server exposing JAX-RS resources defined in this
@@ -37,6 +39,7 @@ public class Main {
 		// in aggiethings.aggregator package
 		final ResourceConfig rc = new ResourceConfig().packages("aggiethings.config");
 		addressManager = new AddressManager(addressFolderPath);
+		aggregatorIdManager = new AggregatorIdManager();
 
 		// create and start a new instance of grizzly http server
 		// exposing the Jersey application at BASE_URI

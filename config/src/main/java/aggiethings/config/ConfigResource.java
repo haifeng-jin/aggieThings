@@ -87,4 +87,11 @@ public class ConfigResource {
 	public String getAggregatorTimeDiff() {
 		return Integer.toString(TimeManager.getAggregatorDiff());
 	}
+	
+	@Path("aggregator/id")
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getAggregatorId() {
+		return Integer.toString(Main.aggregatorIdManager.getNewId());
+	}
 } 
