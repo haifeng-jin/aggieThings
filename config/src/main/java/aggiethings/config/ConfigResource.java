@@ -8,7 +8,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import aggiethings.tools.TimeManager;
 import common.FileGetter;
 import common.PortInfo;
 
@@ -78,14 +77,14 @@ public class ConfigResource {
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getCloudTimeDiff() {
-		return Integer.toString(TimeManager.getCloudDiff());
+		return Integer.toString(Main.timeManager.getCloudDiff());
 	}
 
-	@Path("time/aggregator")
+	@Path("time/aggregator/{id}")
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getAggregatorTimeDiff() {
-		return Integer.toString(TimeManager.getAggregatorDiff());
+	public String getAggregatorTimeDiff(@PathParam("id") int id) {
+		return Integer.toString(Main.timeManager.getAggregatorDiff(id));
 	}
 	
 	@Path("aggregator/id")

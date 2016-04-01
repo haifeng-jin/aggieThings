@@ -6,6 +6,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 import aggiethings.tools.AddressManager;
 import aggiethings.tools.AggregatorIdManager;
+import aggiethings.tools.TimeManager;
 import common.PortInfo;
 
 import java.io.IOException;
@@ -22,6 +23,7 @@ public class Main {
 	private static HttpServer server;
 	static AddressManager addressManager;
 	public static AggregatorIdManager aggregatorIdManager;
+	public static TimeManager timeManager;
 
 	/**
 	 * Starts Grizzly HTTP server exposing JAX-RS resources defined in this

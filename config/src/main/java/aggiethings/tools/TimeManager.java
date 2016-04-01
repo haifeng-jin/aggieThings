@@ -1,5 +1,7 @@
 package aggiethings.tools;
 
+import java.util.HashMap;
+
 /**
  * 
  * @author Haifeng Jin
@@ -7,24 +9,27 @@ package aggiethings.tools;
  */
 public class TimeManager {
 	
-	private static int aggregatorDiff = 0;
-	private static int cloudDiff = 0;
+	private HashMap<Integer, Integer> aggregatorDiff;
+	private int cloudDiff;
 
+	TimeManager() {
+		aggregatorDiff = new HashMap<Integer, Integer>();
+	}
 
-	public static void setAggregatorDiff(int diff) {
-		aggregatorDiff = diff;
+	public void setAggregatorDiff(int id, int diff) {
+		aggregatorDiff.put(id, diff);
 		
 	}
 
-	public static int getAggregatorDiff() {
-		return aggregatorDiff;
+	public int getAggregatorDiff(int id) {
+		return aggregatorDiff.get(id);
 	}
 
-	public static void setCloudDiff(int diff) {
+	public void setCloudDiff(int diff) {
 		cloudDiff = diff;
 	}
 
-	public static int getCloudDiff() {
+	public int getCloudDiff() {
 		return cloudDiff;
 	}
 
