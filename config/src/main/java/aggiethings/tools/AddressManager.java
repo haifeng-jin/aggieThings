@@ -15,7 +15,7 @@ import common.FileLineGetter;
 public class AddressManager {
 
 	String baseAddress;
-	private String cloudAddress = "";
+	private String cloudAddress;
 	private HashMap<Integer, String> aggregatorAddress = new HashMap<Integer, String>();
 
 	public AddressManager(String addressfolderpath) {

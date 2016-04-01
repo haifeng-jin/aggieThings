@@ -1,1 +1,1 @@
- mvn exec:java -Dexec.mainClass="aggiethings.aggregator.Main" -Dexec.args="$1"
+ mvn exec:java -Dexec.mainClass="aggiethings.aggregator.Main"

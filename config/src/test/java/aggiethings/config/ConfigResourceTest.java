@@ -16,6 +16,7 @@ import aggiethings.tools.AddressManagerTest;
 import aggiethings.tools.AddressManager;
 import aggiethings.tools.TimeManager;
 import common.FileGetter;
+import common.PortInfo;
 
 import static org.junit.Assert.assertEquals;
 
@@ -40,11 +41,10 @@ public class ConfigResourceTest {
 		// org.glassfish.jersey.media.json.JsonJaxbFeature());
 		target = c.target(Main.BASE_URI).path("config");
 	}
-	
+
 	@Test
 	public void testGotIt() {
-		String responseMsg = target.request(MediaType.TEXT_PLAIN)
-				.get(String.class);
+		String responseMsg = target.request(MediaType.TEXT_PLAIN).get(String.class);
 		assertEquals("Got it!", responseMsg);
 	}
 
@@ -69,6 +69,13 @@ public class ConfigResourceTest {
 	}
 
 	@Test
+	public void testGetAggregatorAddress2() {
+		String responseMsg = target.path("address").path("aggregator").path(Integer.toString(0))
+				.request(MediaType.TEXT_PLAIN).get(String.class);
+		assertEquals(PortInfo.notAvailable, responseMsg);
+	}
+
+	@Test
 	public void testSetCloudAddress() {
 		String responseMsg = target.path("address").path("cloud").request(MediaType.TEXT_PLAIN)
 				.post(Entity.entity(tempAddress, MediaType.TEXT_PLAIN), String.class);
@@ -81,6 +88,12 @@ public class ConfigResourceTest {
 				.post(Entity.entity(tempAddress, MediaType.TEXT_PLAIN), String.class);
 		String responseMsg = target.path("address").path("cloud").request(MediaType.TEXT_PLAIN).get(String.class);
 		assertEquals(tempAddress, responseMsg);
+	}
+
+	@Test
+	public void testGetCloudAddress2() {
+		String responseMsg = target.path("address").path("cloud").request(MediaType.TEXT_PLAIN).get(String.class);
+		assertEquals(PortInfo.notAvailable, responseMsg);
 	}
 
 	@Test
@@ -109,6 +122,7 @@ public class ConfigResourceTest {
 			assertEquals(i, id);
 		}
 	}
+
 	@After
 	public void stop() {
 		Main.stop();

@@ -76,16 +76,16 @@ public class Main {
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
-		id = Integer.valueOf(args[0]);
+		final String configURL = PortInfo.baseURI + "config";
+		PingHttp.wait(configURL);
+
+		id = getIdFromConfig();
 		BASE_URI = PortInfo.aggregatorBaseURI[id];
 
 		start();
 
-		final String configURL = PortInfo.baseURI + "config";
-		PingHttp.wait(configURL);
-
-		postAddressToConfig(getCurrentAddress());
 		startUploader();
+		postAddressToConfig(getCurrentAddress());
 
 		new Thread(uploader).start();
 
@@ -96,5 +96,12 @@ public class Main {
 
 		uploader.stop();
 		stop();
+	}
+
+	private static int getIdFromConfig() {
+		Client c = ClientBuilder.newClient();
+		WebTarget target = c.target(PortInfo.baseURI).path("config");
+		String id = target.path("aggregator").path("id").request(MediaType.TEXT_PLAIN).get(String.class);
+		return Integer.valueOf(id);
 	}
 }
