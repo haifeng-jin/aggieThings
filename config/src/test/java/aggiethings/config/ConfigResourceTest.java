@@ -13,8 +13,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import common.FileGetter;
-import common.PortInfo;
+import aggiethings.common.FileGetter;
+import aggiethings.common.PortInfo;
 import aggiethings.tools.AddressManager;
 import aggiethings.tools.AddressManagerTest;
 import aggiethings.tools.TimeManager;

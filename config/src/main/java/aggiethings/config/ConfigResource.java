@@ -8,8 +8,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import common.FileGetter;
-import common.PortInfo;
+import aggiethings.common.FileGetter;
+import aggiethings.common.PortInfo;
 
 @Path("config")
 public class ConfigResource {

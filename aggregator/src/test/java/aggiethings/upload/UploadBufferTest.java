@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import aggiethings.upload.UploadBuffer;
-import common.DataItem;
+import aggiethings.common.DataItem;
 
 public class UploadBufferTest {
 	

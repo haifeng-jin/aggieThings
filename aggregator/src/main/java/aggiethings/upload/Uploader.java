@@ -6,7 +6,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
-import common.DataItem;
+import aggiethings.common.DataItem;
 
 /*
  * The uploader is a single thread running in parallel with Aggregator.

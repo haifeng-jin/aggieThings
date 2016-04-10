@@ -3,7 +3,7 @@ package aggiethings.sensor;
 
 
 
-import common.DataItem;
+import aggiethings.common.DataItem;
 
 /*
  * It simulates a sensor to send data using socket.

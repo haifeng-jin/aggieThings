@@ -17,8 +17,8 @@ import org.junit.Test;
 
 import aggiethings.upload.UploadBuffer;
 import aggiethings.upload.Uploader;
-import common.DataItem;
-import common.PortInfo;
+import aggiethings.common.DataItem;
+import aggiethings.common.PortInfo;
 
 public class AggregatorResourceTest {
 

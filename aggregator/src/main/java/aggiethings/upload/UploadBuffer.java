@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import common.DataItem;
+import aggiethings.common.DataItem;
 
 public class UploadBuffer {
 	Queue<DataItem> buffer;

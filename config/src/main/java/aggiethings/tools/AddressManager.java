@@ -5,7 +5,7 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
-import common.FileLineGetter;
+import aggiethings.common.FileLineGetter;
 
 /**
  * Manage the files storing the addresses of the cloud server the aggregators.

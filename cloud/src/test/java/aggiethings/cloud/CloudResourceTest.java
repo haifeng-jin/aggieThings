@@ -11,8 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import aggiethings.cloud.CloudServer;
-import common.DataItem;
-import common.PortInfo;
+import aggiethings.common.DataItem;
+import aggiethings.common.PortInfo;
 
 import static org.junit.Assert.assertEquals;
 

@@ -6,9 +6,9 @@ import org.json.JSONObject;
 
 import aggiethings.sensor.Sensor;
 import aggiethings.sensor.SensorConfig;
-import common.PortInfo;
-import common.JsonReader;
-import common.PingHttp;
+import aggiethings.common.PortInfo;
+import aggiethings.common.JsonReader;
+import aggiethings.common.PingHttp;
 
 import java.io.IOException;
 import java.util.ArrayList;

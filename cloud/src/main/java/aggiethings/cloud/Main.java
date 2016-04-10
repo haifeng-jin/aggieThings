@@ -5,8 +5,8 @@ import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import aggiethings.cloud.CloudServer;
-import common.PingHttp;
-import common.PortInfo;
+import aggiethings.common.PingHttp;
+import aggiethings.common.PortInfo;
 
 import java.io.IOException;
 import java.net.URI;
@@ -26,13 +26,6 @@ public class Main {
 	public static final String BASE_URI = PortInfo.cloudBaseURI;
 	static CloudServer cloud;
 	private static HttpServer server;
-
-	/**
-	 * Starts Grizzly HTTP server exposing JAX-RS resources defined in this
-	 * application.
-	 * 
-	 * @return Grizzly HTTP server.
-	 */
 
 	public static void start() {
 		// create a resource config that scans for JAX-RS resources and
@@ -65,12 +58,6 @@ public class Main {
 		server.shutdown();
 	}
 
-	/**
-	 * Main method.
-	 * 
-	 * @param args
-	 * @throws IOException
-	 */
 	public static void main(String[] args) throws IOException {
 		start();
 

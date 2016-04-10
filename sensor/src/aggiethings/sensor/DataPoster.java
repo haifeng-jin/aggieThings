@@ -1,6 +1,6 @@
 package aggiethings.sensor;
 
-import common.DataItem;
+import aggiethings.common.DataItem;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;

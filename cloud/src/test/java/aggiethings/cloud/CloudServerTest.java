@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import org.junit.Before;
 import org.junit.Test;
 
-import common.DataItem;
+import aggiethings.common.DataItem;
 
 public class CloudServerTest {
 	private byte[][] byteArray;

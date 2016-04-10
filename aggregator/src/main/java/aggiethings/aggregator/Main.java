@@ -6,8 +6,8 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 import aggiethings.upload.UploadBuffer;
 import aggiethings.upload.Uploader;
-import common.PingHttp;
-import common.PortInfo;
+import aggiethings.common.PingHttp;
+import aggiethings.common.PortInfo;
 
 import java.io.IOException;
 import java.net.URI;
@@ -30,13 +30,6 @@ public class Main {
 	private static HttpServer server;
 	static String cloudAddress;
 	static int id;
-
-	/**
-	 * Starts Grizzly HTTP server exposing JAX-RS resources defined in this
-	 * application.
-	 * 
-	 * @return Grizzly HTTP server.
-	 */
 
 	public static void start() {
 		// create a resource config that scans for JAX-RS resources and
@@ -69,12 +62,6 @@ public class Main {
 		server.shutdown();
 	}
 
-	/**
-	 * Main method.
-	 * 
-	 * @param args
-	 * @throws IOException
-	 */
 	public static void main(String[] args) throws IOException {
 		final String configURL = PortInfo.baseURI + "config";
 		PingHttp.wait(configURL);

@@ -2,7 +2,7 @@ package aggiethings.cloud;
 
 import java.util.ArrayList;
 
-import common.DataItem;
+import aggiethings.common.DataItem;
 
 public class CloudServer {
 
@@ -15,7 +15,7 @@ public class CloudServer {
 
 	/**
 	 * Insert the item to the database.
-	 * Currently use an ArrayList<DataItem> as the database.
+	 * Currently use an ArrayList of DataItem as the database.
 	 * @param item The DataItem to insert.
 	 */
 	public synchronized void insert(DataItem item) {
