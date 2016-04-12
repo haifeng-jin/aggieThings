@@ -17,9 +17,13 @@ public class PortInfo {
 	public final static String[] aggregatorBaseURI = { "http://localhost:8082/", "http://localhost:8083/" };
 	public static String aggregatorPath = "aggregator";
 	public static String cloudPath = "cloud";
+	//TODO: change the name of target
 	private static WebTarget target = ClientBuilder.newClient().target(baseURI).path("config/address");
 	public final static String notAvailable = "Not Available";
 
+	/**
+	 * It would block the thread until it successfully got the address.
+	 */
 	public static String getAggregatorAddress(int id) {
 		String address = new String(notAvailable);
 		while (address.equals(notAvailable)) {
@@ -28,6 +32,9 @@ public class PortInfo {
 		return address;
 	}
 
+	/**
+	 * It would block the thread until it successfully got the address.
+	 */
 	public static String getCloudAddress() {
 		String address = new String(notAvailable);
 		while (address.equals(notAvailable)) {

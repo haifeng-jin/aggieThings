@@ -19,6 +19,7 @@ public class SensorConfig {
 	}
 
 	public SensorConfig(JSONObject json) {
+		//TODO: use this() to write this constructor.
 		try {
 			this.name = json.getString("name");
 			this.byteNum = json.getInt("byteNum");

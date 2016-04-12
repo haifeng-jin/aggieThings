@@ -71,6 +71,7 @@ public class Main {
 
 		start();
 
+		//TODO: Add the address of the cloud as a parameter.
 		startUploader();
 		postAddressToConfig(getCurrentAddress());
 

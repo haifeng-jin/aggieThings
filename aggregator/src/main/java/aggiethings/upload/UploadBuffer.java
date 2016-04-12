@@ -19,6 +19,7 @@ public class UploadBuffer {
 	}
 
 	public UploadBuffer(int bufferSize) {
+		//TODO:call this() first.
 		buffer = new LinkedList<DataItem>();
 	}
 
@@ -31,6 +32,7 @@ public class UploadBuffer {
 	}
 
 	public synchronized void add(DataItem item) {
+		//TODO:Do not add timestamp here.
 		item.addTimestamp(new Timestamp(System.currentTimeMillis()));
 		buffer.add(item);
 		storage += item.getData().length;
