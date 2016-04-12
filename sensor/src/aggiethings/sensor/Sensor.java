@@ -1,11 +1,8 @@
 package aggiethings.sensor;
 
-
-
-
 import aggiethings.common.DataItem;
 
-/*
+/**
  * It simulates a sensor to send data using socket.
  * It runs as a separate thread to send data.
  * The data consists of several items, which is send regularly with equal intermission.

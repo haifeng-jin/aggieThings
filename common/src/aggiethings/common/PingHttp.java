@@ -4,6 +4,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class PingHttp {
+	/**
+	 * Block the process until we successfully ping the URL.
+	 */
 	public static void wait(String url) {
 		while (!ping(url)) {
 			try {
